@@ -475,4 +475,16 @@
     var msg   = document.getElementById('successMsg');
     var val   = input.value.trim();
     var valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
-    if (!vali
+    if (!valid) {
+      input.style.borderColor = '#FF4466';
+      setTimeout(function(){ input.style.borderColor = ''; }, 1200);
+      return;
+    }
+    input.parentElement.style.display = 'none';
+    document.querySelector('.notify-note').style.display = 'none';
+    msg.style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
