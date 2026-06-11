@@ -473,6 +473,7 @@
   function handleNotify() {
     var input = document.getElementById('emailInput');
     var msg   = document.getElementById('successMsg');
+    var btn   = document.querySelector('.btn-notify');
     var val   = input.value.trim();
     var valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
     if (!valid) {
@@ -480,9 +481,34 @@
       setTimeout(function(){ input.style.borderColor = ''; }, 1200);
       return;
     }
-    input.parentElement.style.display = 'none';
-    document.querySelector('.notify-note').style.display = 'none';
-    msg.style.display = 'block';
+    btn.disabled = true;
+    btn.textContent = 'SENDING…';
+    fetch('https://api.buttondown.email/v1/subscribers', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Token bd4ab504-b499-4432-9bb0-29621600763e',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email: val })
+    })
+    .then(function(res) {
+      if (res.status === 201 || res.status === 200 || res.status === 409) {
+        input.parentElement.style.display = 'none';
+        document.querySelector('.notify-note').style.display = 'none';
+        msg.style.display = 'block';
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'NOTIFY ME';
+        input.style.borderColor = '#FF4466';
+        setTimeout(function(){ input.style.borderColor = ''; }, 1200);
+      }
+    })
+    .catch(function() {
+      btn.disabled = false;
+      btn.textContent = 'NOTIFY ME';
+      input.style.borderColor = '#FF4466';
+      setTimeout(function(){ input.style.borderColor = ''; }, 1200);
+    });
   }
 </script>
 
