@@ -381,10 +381,6 @@
   <div class="spec-strip">
     <div class="spec-item">
       <div class="spec-val">4</div>
-      <div class="spec-key">Stacked Layers</div>
-    </div>
-    <div class="spec-item">
-      <div class="spec-val">4</div>
       <div class="spec-key">Waveform Types</div>
     </div>
     <div class="spec-item">
@@ -393,7 +389,11 @@
     </div>
     <div class="spec-item">
       <div class="spec-val">∞</div>
-      <div class="spec-key">Session Segments</div>
+      <div class="spec-key">Saved Presets</div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-val">1</div>
+      <div class="spec-key">One-Time Purchase</div>
     </div>
     <div class="spec-item">
       <div class="spec-val">0</div>
@@ -404,9 +404,13 @@
   <div class="callout">
     <p>
       <strong>Brainwave Generator user?</strong> FreqCraft was built for you.
-      Full session sequencing, unlimited segments, smooth frequency transitions —
-      everything BWGen did, rebuilt for modern Android with background mixing that actually works.
-      Your presets. Your control. Your tool.
+      Every Hz value visible. Every parameter editable. True background mixing that runs
+      alongside your other audio without interruption — something BWGen never cracked on modern Android.
+      Save and recall unlimited presets. Your frequencies. Your control. Your tool.
+    </p>
+    <p style="margin-top:12px; font-size:0.8rem; color: var(--subtle);">
+      <strong style="color:var(--cyan);">FreqCraft Studio</strong> — desktop version with stacked layers,
+      session sequencing, and advanced transitions — is in development.
     </p>
   </div>
 
@@ -471,16 +475,4 @@
     var msg   = document.getElementById('successMsg');
     var val   = input.value.trim();
     var valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
-    if (!valid) {
-      input.style.borderColor = '#FF4466';
-      setTimeout(function(){ input.style.borderColor = ''; }, 1200);
-      return;
-    }
-    input.parentElement.style.display = 'none';
-    document.querySelector('.notify-note').style.display = 'none';
-    msg.style.display = 'block';
-  }
-</script>
-
-</body>
-</html>
+    if (!vali
