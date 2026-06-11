@@ -489,10 +489,10 @@
         'Authorization': 'Token bd4ab504-b499-4432-9bb0-29621600763e',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ email: val })
+      body: JSON.stringify({ email_address: val, type: 'regular' })
     })
     .then(function(res) {
-      if (res.status === 201 || res.status === 200 || res.status === 409) {
+      if (res.status === 201 || res.status === 200 || res.status === 400 || res.status === 409) {
         input.parentElement.style.display = 'none';
         document.querySelector('.notify-note').style.display = 'none';
         msg.style.display = 'block';
