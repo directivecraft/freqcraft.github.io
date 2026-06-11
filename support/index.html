@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — FreqCraft</title>
+  <meta name="description" content="FreqCraft support and contact. Get help with the brainwave entrainment workstation for Android." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:    #0A0A0F;
+      --panel:    #13131F;
+      --border:   #1E1E32;
+      --cyan:     #00E5FF;
+      --cyan-dim: #00E5FF33;
+      --text:     #E8E8F0;
+      --muted:    #7A7A9A;
+      --subtle:   #3A3A5A;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    #waveCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.08;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px 64px;
+    }
+
+    /* NAV */
+    nav {
+      padding: 24px 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .wordmark {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .wordmark span { color: var(--cyan); }
+
+    .back-link {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .back-link:hover { color: var(--cyan); border-color: var(--cyan-dim); }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: 48px 0 32px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 40px;
+    }
+
+    .eyebrow {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .header-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 500px;
+      line-height: 1.7;
+    }
+
+    /* CONTACT BLOCK */
+    .contact-block {
+      background: var(--panel);
+      border: 1px solid var(--cyan-dim);
+      border-left: 3px solid var(--cyan);
+      padding: 24px 28px;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .contact-block-text .contact-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 8px;
+    }
+
+    .contact-block-text p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 480px;
+    }
+    .contact-block-text p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .contact-email-display {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--cyan);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      padding-top: 24px;
+    }
+
+    /* FAQ SECTION */
+    .faq-section {
+      margin-bottom: 40px;
+    }
+
+    .faq-section h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+    }
+    .faq-item:last-child { border-bottom: none; }
+
+    .faq-q {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .faq-a {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+    .faq-a strong { color: var(--text); font-weight: 500; }
+
+    /* DISCLAIMER BLOCK */
+    .disclaimer-block {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 24px 28px;
+      margin-bottom: 40px;
+    }
+
+    .disclaimer-block .dis-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--subtle);
+      margin-bottom: 12px;
+    }
+
+    .disclaimer-block p {
+      font-size: 0.8rem;
+      color: var(--subtle);
+      line-height: 1.75;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 0 0;
+      margin-top: 8px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-mark {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--subtle);
+    }
+    .footer-mark span { color: var(--cyan); }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+    .footer-links a {
+      font-size: 0.75rem;
+      color: var(--subtle);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--cyan); }
+
+    @media (max-width: 600px) {
+      nav { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .contact-block { flex-direction: column; }
+      .contact-email-display { padding-top: 0; }
+      .footer-links { flex-direction: column; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="waveCanvas"></canvas>
+
+<div class="wrapper">
+
+  <nav>
+    <a href="/" class="wordmark">Freq<span>Craft</span></a>
+    <a href="/" class="back-link">← Back</a>
+  </nav>
+
+  <div class="page-header">
+    <p class="eyebrow">Help</p>
+    <h1>Support</h1>
+    <p class="header-sub">FreqCraft is built to be self-explanatory. If something isn't working or you have a question, reach out directly.</p>
+  </div>
+
+  <div class="contact-block">
+    <div class="contact-block-text">
+      <div class="contact-label">Contact</div>
+      <p>Email is the only support channel. <strong>Response within 48 hours</strong> on business days. Include your Android version and a brief description of the issue.</p>
+    </div>
+    <div class="contact-email-display">dcraft@duck.com</div>
+  </div>
+
+  <div class="faq-section">
+    <h2>Common Questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">Why can't I hear a binaural beat?</div>
+      <div class="faq-a">Binaural beats require <strong>stereo headphones</strong> — each ear must receive a different frequency. Speakers output the same signal to both ears, which cancels the effect. Plug in headphones and try again.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">FreqCraft is pausing my music when I start a session.</div>
+      <div class="faq-a">This should not happen — background mixing is a core feature. If it does occur, force-stop both apps, reopen your music app first, let it begin playing, then open FreqCraft and start your session. If the issue persists, email support with your Android version and device model.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">What is the difference between binaural and isochronic modes?</div>
+      <div class="faq-a"><strong>Binaural:</strong> Two slightly different frequencies — one in each ear. Your brain perceives the difference as a beat. Requires stereo headphones. <strong>Isochronic:</strong> A single tone that switches on and off at the target rate. Works on speakers. Both methods target the same brainwave entrainment goal — the delivery mechanism differs.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">What do the carrier and beat frequency fields do?</div>
+      <div class="faq-a">The <strong>carrier frequency</strong> sets the pitch of the tone (e.g., 200 Hz). The <strong>beat frequency</strong> (binaural) or <strong>pulse rate</strong> (isochronic) sets the entrainment target — the brainwave frequency you are targeting (e.g., 10 Hz for alpha). Keep carrier below 1000 Hz and beat below 30 Hz for effective results.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Can I use FreqCraft with a PEMF device?</div>
+      <div class="faq-a">FreqCraft outputs a standard audio signal. If your PEMF device accepts audio input via a 3.5mm jack, it can receive FreqCraft's signal. The entrainment mechanism for PEMF differs from audio-based entrainment — consult your device's documentation for compatibility guidance. FreqCraft makes no claims about PEMF efficacy.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">How do I get a refund?</div>
+      <div class="faq-a">Refund requests are handled through Google Play. Open the Play Store, find your purchase, and request a refund through Google's standard process. Google Play's refund policy governs all purchases.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Does FreqCraft collect any of my data?</div>
+      <div class="faq-a"><strong>No.</strong> FreqCraft has no internet permission and cannot transmit data. All sessions, presets, and settings are stored locally on your device only. See the <a href="/privacy" style="color: var(--cyan); text-decoration: none;">Privacy Policy</a> for the full details.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Is FreqCraft safe to use?</div>
+      <div class="faq-a">Read the in-app disclaimer before use. Do not use if you have epilepsy, seizure disorders, serious psychiatric conditions, cardiac conditions, or are pregnant. Do not use while driving or operating machinery. Discontinue immediately if you experience dizziness, disorientation, or unusual discomfort. Consult a physician if you have any neurological or cardiovascular health concerns.</div>
+    </div>
+
+  </div>
+
+  <div class="disclaimer-block">
+    <div class="dis-label">Medical Disclaimer</div>
+    <p>FreqCraft is a personal wellness and audio experimentation tool. It is NOT a medical device, not FDA-regulated, and is not intended to diagnose, treat, cure, or prevent any disease or medical condition. Individual results vary. The developer assumes no liability for outcomes resulting from use.</p>
+  </div>
+
+  <footer>
+    <div class="footer-mark">Freq<span>Craft</span> &nbsp;·&nbsp; by Directive Craft LLC</div>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/privacy">Privacy Policy</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  const canvas = document.getElementById('waveCanvas');
+  const ctx    = canvas.getContext('2d');
+  let W, H, t  = 0;
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const waves = [
+      { freq: 0.018, amp: 0.06,  speed: 0.012, phase: 0,   alpha: 0.9 },
+      { freq: 0.011, amp: 0.04,  speed: 0.007, phase: 1.2, alpha: 0.5 },
+    ];
+    waves.forEach(function(w) {
+      ctx.beginPath();
+      ctx.strokeStyle = 'rgba(0,229,255,' + w.alpha + ')';
+      ctx.lineWidth = 1;
+      for (var x = 0; x <= W; x += 2) {
+        var y = H / 2
+          + Math.sin(x * w.freq + t * w.speed + w.phase) * (H * w.amp)
+          + Math.sin(x * w.freq * 0.5 + t * w.speed * 0.6) * (H * w.amp * 0.4);
+        if (x === 0) { ctx.moveTo(x, y); } else { ctx.lineTo(x, y); }
+      }
+      ctx.stroke();
+    });
+    t++;
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+</script>
+
+</body>
+</html>

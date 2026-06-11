@@ -295,12 +295,26 @@
       text-align: right;
     }
 
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+    .footer-links a {
+      font-size: 0.75rem;
+      color: var(--subtle);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--cyan); }
+
     /* ── MOBILE ── */
     @media (max-width: 600px) {
       nav { flex-direction: column; align-items: flex-start; gap: 10px; }
       .spec-item { border-right: none; border-bottom: 1px solid var(--border); }
       .spec-item:last-child { border-bottom: none; }
       .footer-legal { text-align: left; }
+      .footer-links { flex-direction: column; gap: 8px; }
     }
   </style>
 </head>
@@ -398,6 +412,10 @@
 
   <footer>
     <div class="footer-mark">Freq<span>Craft</span> &nbsp;·&nbsp; by Directive Craft LLC</div>
+    <div class="footer-links">
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/support">Support</a>
+    </div>
     <div class="footer-legal">
       For personal wellness and audio experimentation only. Not a medical device.
       Not FDA-regulated. Consult a physician before use if you have epilepsy,
