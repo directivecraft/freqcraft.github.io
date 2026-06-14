@@ -160,6 +160,7 @@
       letter-spacing: 0.02em;
       white-space: nowrap;
       padding-top: 24px;
+      text-decoration: none;
     }
 
     /* FAQ SECTION */
@@ -287,7 +288,8 @@
       <div class="contact-label">Contact</div>
       <p>Email is the only support channel, and replies come from a real person — <strong>usually within a few days</strong>, occasionally longer during developer absences. Include your Android version and a brief description of the issue.</p>
     </div>
-    <div class="contact-email-display">freqcraft@duck.com</div>
+    <!-- Email assembled by JS — never in plain HTML source -->
+    <a class="contact-email-display email-link" href="#">support@freqcraft.app</a>
   </div>
 
   <div class="faq-section">
@@ -347,7 +349,7 @@
 
   <div class="disclaimer-block">
     <div class="dis-label">Medical Disclaimer</div>
-    <p>FreqCraft is a personal wellness and audio experimentation tool. It is NOT a medical device, not FDA-regulated, and is not intended to diagnose, treat, cure, or prevent any disease or medical condition. Individual results vary. The developer assumes no liability for outcomes resulting from use.</p>
+    <p>FreqCraft is a personal audio experimentation tool. It is NOT a medical device, not FDA-regulated, and is not intended to diagnose, treat, cure, or prevent any disease or medical condition. Individual results vary. The developer assumes no liability for outcomes resulting from use.</p>
   </div>
 
   <footer>
@@ -361,6 +363,7 @@
 </div>
 
 <script>
+  // ── CANVAS ──
   const canvas = document.getElementById('waveCanvas');
   const ctx    = canvas.getContext('2d');
   let W, H, t  = 0;
@@ -395,6 +398,17 @@
   window.addEventListener('resize', resize);
   resize();
   draw();
+
+  // ── EMAIL OBFUSCATION ──
+  // Never in HTML source — assembled at runtime so scrapers can't harvest it.
+  (function() {
+    var u = 'support';
+    var d = 'freqcraft.app';
+    var addr = u + '@' + d;
+    document.querySelectorAll('.email-link').forEach(function(el) {
+      el.href = 'mailto:' + addr;
+    });
+  })();
 </script>
 
 </body>
