@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FreqCraft — Brainwave Entrainment Workstation</title>
-  <meta name="description" content="FreqCraft is a precision brainwave entrainment workstation for Android. No black boxes. No subscriptions. Every frequency is yours." />
+  <title>FreqCraft — Precision Brainwave Entrainment for Android</title>
+  <meta name="description" content="FreqCraft is a precision binaural and isochronic tone generator for Android. Full parameter control. No subscriptions. No data collected. FreqCraft Studio desktop suite in development." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -80,7 +80,10 @@
       border: 1px solid var(--cyan-dim);
       padding: 4px 10px;
       border-radius: 2px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
     }
+    a.badge:hover { border-color: var(--cyan); background: var(--cyan-dim); }
 
     /* ── HERO ── */
     .hero {
@@ -119,14 +122,35 @@
     }
     .hero-sub strong { color: var(--text); font-weight: 400; }
 
-    /* ── FEATURE GRAPHIC ── */
-    .feature-graphic-wrap {
-      margin: 32px 0 0;
-      border-radius: 6px;
-      overflow: hidden;
-      border: 1px solid var(--border);
+    /* ── STORE CTA (launch) ── */
+    .cta-row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 12px;
     }
-    .feature-graphic { width: 100%; display: block; }
+    .btn-store {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      background: var(--cyan);
+      color: var(--black);
+      text-decoration: none;
+      font-family: 'Space Grotesk', sans-serif;
+      padding: 10px 28px;
+      border-radius: 4px;
+      line-height: 1.15;
+      transition: opacity 0.2s;
+    }
+    .btn-store:hover { opacity: 0.85; }
+    .btn-store .s1 { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.85; }
+    .btn-store .s2 { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.01em; }
+    .cta-price {
+      font-size: 0.74rem;
+      color: var(--muted);
+      text-align: center;
+      letter-spacing: 0.04em;
+      margin-bottom: 24px;
+    }
 
     /* ── NOTIFY FORM ── */
     .notify-wrap {
@@ -136,6 +160,7 @@
       flex-wrap: wrap;
       margin-bottom: 10px;
     }
+    .notify-studio { margin-top: 4px; }
 
     .notify-wrap input[type="email"] {
       background: var(--panel);
@@ -277,6 +302,34 @@
     }
     .callout p strong { color: var(--text); font-weight: 500; }
 
+    /* ── STORY ── */
+    .story { margin-bottom: 28px; }
+    .story .eyebrow { text-align: left; margin-bottom: 10px; }
+    .story h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+    .story p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+    .story p strong { color: var(--text); font-weight: 500; }
+    .story .story-score {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--cyan);
+      letter-spacing: -0.02em;
+      margin: 4px 0 14px;
+    }
+
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border);
@@ -335,26 +388,33 @@
 
   <nav>
     <div class="wordmark">Freq<span>Craft</span></div>
-    <div class="badge">Coming Soon</div>
+    <a class="badge" href="https://play.google.com/store/apps/details?id=com.directivecraft.freqcraft" target="_blank" rel="noopener">Now on Google Play</a>
   </nav>
 
   <section class="hero">
-    <p class="eyebrow">Android — Brainwave Entrainment Workstation</p>
+    <p class="eyebrow">Now on Android · Precision Mobile Tool · Studio Coming</p>
     <h1>Your frequencies.<br><em>Your sessions.</em><br>No black boxes.</h1>
     <p class="hero-sub">
       FreqCraft is a <strong>precision audio engineering tool</strong> for brainwave entrainment exploration and experimentation.
       Every Hz value visible. Every parameter yours to edit.
       Plays silently alongside any other audio — no interruptions, no compromises.
     </p>
-    <div class="notify-wrap">
-      <input type="email" id="emailInput" placeholder="your@email.com" autocomplete="email" />
-      <button class="btn-notify" onclick="handleNotify()">Notify Me</button>
+    <div class="cta-row">
+      <a class="btn-store" href="https://play.google.com/store/apps/details?id=com.directivecraft.freqcraft" target="_blank" rel="noopener">
+        <span class="s1">Get it on</span>
+        <span class="s2">Google Play</span>
+      </a>
     </div>
-    <p class="notify-note">Launch notification only. No marketing. No data sharing. Ever.</p>
-    <p class="success-msg" id="successMsg">✓ You're on the list. We'll reach out at launch.</p>
-    <div class="feature-graphic-wrap">
-      <img src="assets/feature_graphic.png" alt="FreqCraft — Precision Hz. Nothing hidden. Nothing tracked." class="feature-graphic" />
-    </div>
+    <p class="cta-price">One-time purchase · No subscription · No ads · No tracking</p>
+
+    <form class="notify-wrap notify-studio" action="https://buttondown.com/api/emails/embed-subscribe/freqcraft" method="post" target="bd-iframe" onsubmit="return bdNotify()">
+      <input type="email" name="email" id="emailInput" placeholder="your@email.com" autocomplete="email" required />
+      <input type="hidden" name="embed" value="1" />
+      <button type="submit" class="btn-notify">Notify me at Studio launch</button>
+    </form>
+    <p class="notify-note">FreqCraft Studio (desktop) waitlist. No marketing. No data sharing. Ever.</p>
+    <p class="success-msg" id="successMsg">✓ You're on the Studio list. We'll reach out at launch.</p>
+    <iframe name="bd-iframe" style="display:none" title="subscribe"></iframe>
   </section>
 
   <hr class="divider" />
@@ -415,14 +475,20 @@
 
   <div class="callout">
     <p>
-      <strong>Brainwave Generator user?</strong> FreqCraft was built for you.
-      Every Hz value visible. Every parameter editable. True background mixing that runs
-      alongside your other audio without interruption — something BWGen never cracked on modern Android.
-      Save and recall unlimited presets. Your frequencies. Your control. Your tool.
+      <strong>Brainwave Generator user?</strong> FreqCraft Mobile was built as the introductory release
+      for the entrainment community — new and experienced alike. It's a precision single-layer tone generator:
+      every Hz value visible, every parameter editable, true background mixing that runs alongside your
+      other audio without interruption. A focused tool to evaluate the FreqCraft approach before the
+      full desktop suite arrives.
     </p>
-    <p style="margin-top:12px; font-size:0.8rem; color: var(--subtle);">
-      <strong style="color:var(--cyan);">FreqCraft Studio</strong> — desktop version with stacked layers,
-      session sequencing, and advanced transitions — is in development.
+    <p style="margin-top:14px;">
+      <strong style="color:var(--cyan);">FreqCraft Studio — Desktop</strong>
+    </p>
+    <p style="margin-top:8px; font-size:0.88rem;">
+      The full workstation is in active development: stacked multi-layer sessions, frequency ramping
+      between states, ambient noise mixing, session programming, and community preset libraries —
+      everything BWGen offered and more, rebuilt for modern hardware. Join the waitlist above
+      to be notified at launch.
     </p>
   </div>
 
@@ -437,6 +503,46 @@
     </p>
   </div>
 
+  <hr class="divider" />
+
+  <section class="story">
+    <p class="eyebrow">The Origin</p>
+    <h2>The experiment that built FreqCraft</h2>
+    <p>
+      Math was always my weak spot. I failed pre-algebra twice and barely made it through high school.
+      Years later I learned there's a name for it: <strong>dyscalculia</strong> — a numerical processing
+      disorder, essentially dyslexia for numbers.
+    </p>
+    <p>
+      In 2012, in my mid-forties, I went back to college to take chemistry. The prerequisite was algebra,
+      so I started at the bottom and clawed my way through — failing, retaking, scraping a C the hard way.
+      I finally made it into the chemistry class. By the end of the semester, I was on the edge of failing
+      that one too.
+    </p>
+    <p>
+      That's when I tried something different. With a documented-disability accommodation, I spent the final
+      review weeks sitting in class every day wearing headphones, listening to a binaural-beats focus program
+      on loop. No notes. No studying at home. Just the audio and the instructor working problems on the board.
+    </p>
+    <p>
+      The final exam was 28 pages. My accommodation gave me a five-hour window. I worked the way I always did —
+      jumping around, skipping what stopped me, cycling back — ran thirty minutes over, and still turned it in
+      <strong>unfinished</strong>.
+    </p>
+    <p class="story-score">I scored a 98%.</p>
+    <p>
+      A student who'd been failing all semester, who handed in an incomplete exam, scored 98%. I can't fully
+      explain it. But it sent me down a path I never left.
+    </p>
+    <p>
+      FreqCraft is the tool I wish I'd had back then: transparent, precise, no black boxes, no subscriptions,
+      no guesswork. Every Hz visible, every parameter yours to control. I'm <strong>not claiming it will do
+      for you what that semester did for me</strong> — everyone's different, and this is an instrument for
+      exploration, not a treatment. I built it because I lived something I couldn't ignore, and I wanted a
+      clean, honest tool to keep exploring it.
+    </p>
+  </section>
+
   <footer>
     <div class="footer-mark">Freq<span>Craft</span> &nbsp;·&nbsp; by Directive Craft LLC</div>
     <div class="footer-links">
@@ -444,7 +550,7 @@
       <a href="/support">Support</a>
     </div>
     <div class="footer-legal">
-      For personal audio experimentation only. Not a medical device.
+      For personal wellness and audio experimentation only. Not a medical device.
       Not FDA-regulated. Consult a physician before use if you have epilepsy,
       seizure disorders, or cardiac conditions.
     </div>
@@ -492,46 +598,15 @@
   resize();
   draw();
 
-  // ── NOTIFY ──
-  function handleNotify() {
-    var input = document.getElementById('emailInput');
-    var msg   = document.getElementById('successMsg');
-    var btn   = document.querySelector('.btn-notify');
-    var val   = input.value.trim();
-    var valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
-    if (!valid) {
-      input.style.borderColor = '#FF4466';
-      setTimeout(function(){ input.style.borderColor = ''; }, 1200);
-      return;
-    }
-    btn.disabled = true;
-    btn.textContent = 'SENDING…';
-    fetch('https://api.buttondown.email/v1/subscribers', {
-      method: 'POST',
-      headers: {
-        'Authorization': 'Token bd4ab504-b499-4432-9bb0-29621600763e',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ email_address: val, type: 'regular' })
-    })
-    .then(function(res) {
-      if (res.status === 201 || res.status === 200 || res.status === 400 || res.status === 409) {
-        input.parentElement.style.display = 'none';
-        document.querySelector('.notify-note').style.display = 'none';
-        msg.style.display = 'block';
-      } else {
-        btn.disabled = false;
-        btn.textContent = 'NOTIFY ME';
-        input.style.borderColor = '#FF4466';
-        setTimeout(function(){ input.style.borderColor = ''; }, 1200);
-      }
-    })
-    .catch(function() {
-      btn.disabled = false;
-      btn.textContent = 'NOTIFY ME';
-      input.style.borderColor = '#FF4466';
-      setTimeout(function(){ input.style.borderColor = ''; }, 1200);
-    });
+  // ── NOTIFY (Buttondown embed — no API key in client) ──
+  // The form posts natively to Buttondown's public embed endpoint, targeting a
+  // hidden iframe so the page doesn't navigate away. Native validation (required +
+  // type=email) blocks invalid submits, so this only fires on a valid email.
+  function bdNotify() {
+    document.querySelector('.notify-wrap').style.display = 'none';
+    document.querySelector('.notify-note').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+    return true;
   }
 </script>
 
