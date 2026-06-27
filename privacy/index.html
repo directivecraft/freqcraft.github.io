@@ -305,9 +305,11 @@
 
   <div class="policy-section">
     <h2>Device Permissions</h2>
-    <p>FreqCraft requests only the permissions required to keep audio playing while the app is in the background:</p>
-    <p><strong>FOREGROUND_SERVICE / FOREGROUND_SERVICE_MEDIA_PLAYBACK</strong> — Allow audio playback to continue when the app is in the background.</p>
-    <p>No other permissions are requested. FreqCraft does not request INTERNET, ACCESS_FINE_LOCATION, READ_CONTACTS, READ_EXTERNAL_STORAGE, CAMERA, MICROPHONE, or any other sensitive permissions.</p>
+    <p>FreqCraft's Android manifest contains four permissions. Two are requested by the app; two are added automatically by Android system libraries when the app is built. All four are listed in full below — none collects data, and none can access a network.</p>
+    <p><strong>FOREGROUND_SERVICE / FOREGROUND_SERVICE_MEDIA_PLAYBACK</strong> — Requested by the app. Allow audio playback to continue while the app is in the background.</p>
+    <p><strong>DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION</strong> — Added automatically by Android. A private, signature-level permission that locks the app's headphone-unplug listener so no other app on the device can reach it. Security only; it grants nothing outward.</p>
+    <p><strong>CHECK_LICENSE</strong> — Added automatically by a Google Play system library. Lets the app confirm its own Play licensing status. Collects no personal data.</p>
+    <p>FreqCraft does <strong>not</strong> request INTERNET, ACCESS_FINE_LOCATION, READ_CONTACTS, READ_EXTERNAL_STORAGE, CAMERA, MICROPHONE, or any other sensitive permission. With no network permission, the app is architecturally incapable of transmitting data off your device.</p>
   </div>
 
   <div class="policy-section">
