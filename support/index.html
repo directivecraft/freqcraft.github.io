@@ -309,7 +309,7 @@
 
     <div class="faq-item">
       <div class="faq-q">My session stops playing after a few minutes.</div>
-      <div class="faq-a">This is almost always your phone's <strong>battery optimization</strong> shutting down background audio — most common on Samsung, Xiaomi, Sony, and Huawei devices. To fix it, exclude FreqCraft from battery optimization: open your phone's <strong>Settings</strong>, search for "battery" or "app battery usage," find <strong>FreqCraft</strong>, and set it to <strong>Unrestricted</strong> (some phones label this "Don't optimize"). Stock Android and Pixel devices are rarely affected. A future update will add further protection for long sessions.</div>
+      <div class="faq-a">This is almost always your phone's <strong>battery optimization</strong> shutting down background audio — most common on Samsung, Xiaomi, Sony, and Huawei devices. To fix it, exclude FreqCraft from battery optimization: open your phone's <strong>Settings</strong>, search for "battery" or "app battery usage," find <strong>FreqCraft</strong>, and set it to <strong>Unrestricted</strong> (some phones label this "Don't optimize"). Stock Android and Pixel devices are rarely affected. FreqCraft already runs a background audio service to keep long sessions alive — the Unrestricted setting above is only needed on the most aggressive OEMs.</div>
     </div>
 
     <div class="faq-item">
@@ -330,6 +330,11 @@
     <div class="faq-item">
       <div class="faq-q">What do the carrier and beat frequency fields do?</div>
       <div class="faq-a">The <strong>carrier frequency</strong> sets the pitch of the tone (e.g., 200 Hz). The <strong>beat frequency</strong> (binaural) or <strong>pulse rate</strong> (isochronic) sets the entrainment target — the brainwave frequency you are targeting (e.g., 10 Hz for alpha). Keep carrier below 1000 Hz and beat up to about 40 Hz (delta through gamma) for effective results.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Which waveform should I use?</div>
+      <div class="faq-a"><strong>Sine is the recommended default</strong> and the standard for entrainment — a single clean frequency with no added overtones. Square, sawtooth, and triangle are provided for exploration: they add harmonic overtones that can sound bright or harsh, most noticeably at higher carrier frequencies. Isochronic mode always uses a sine carrier for the cleanest pulse. Every waveform stays available — sine is simply the most precise.</div>
     </div>
 
     <div class="faq-item">
