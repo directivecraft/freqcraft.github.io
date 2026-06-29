@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /index.launch.html
+Sitemap: https://www.freqcraft.app/sitemap.xml
