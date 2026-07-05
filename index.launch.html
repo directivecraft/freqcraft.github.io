@@ -330,6 +330,29 @@
       margin: 4px 0 14px;
     }
 
+    /* ── DEMO VIDEO ── */
+    .demo { text-align: center; margin-bottom: 28px; }
+    .demo .eyebrow { margin-bottom: 16px; }
+    .demo-frame {
+      display: inline-block;
+      width: 100%;
+      max-width: 300px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--panel);
+      box-shadow: 0 0 44px var(--cyan-dim);
+      line-height: 0;
+    }
+    .demo-frame video { display: block; width: 100%; height: auto; }
+    .demo-cap {
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: 14px;
+    }
+
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border);
@@ -415,6 +438,17 @@
     <p class="notify-note">FreqCraft Studio (desktop) waitlist. No marketing. No data sharing. Ever.</p>
     <p class="success-msg" id="successMsg">✓ You're on the Studio list. We'll reach out at launch.</p>
     <iframe name="bd-iframe" style="display:none" title="subscribe"></iframe>
+  </section>
+
+  <section class="demo">
+    <p class="eyebrow">See it in action</p>
+    <div class="demo-frame">
+      <video src="assets/freqcraft-demo.mp4"
+             poster="assets/freqcraft-demo-poster.jpg"
+             autoplay muted loop playsinline preload="metadata"
+             aria-label="FreqCraft screen capture demo"></video>
+    </div>
+    <p class="demo-cap">Actual app · Live screen capture · No narration</p>
   </section>
 
   <hr class="divider" />
