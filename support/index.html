@@ -6,9 +6,7 @@
   <link rel="canonical" href="https://www.freqcraft.app/support/" />
   <title>Support — FreqCraft</title>
   <meta name="description" content="FreqCraft support and contact. Get help with the precision binaural beats and isochronic tones generator for Android." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/fonts.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -290,7 +288,7 @@
       <p>Email is the only support channel, and replies come from a real person — <strong>usually within a few days</strong>, occasionally longer during developer absences. Include your Android version and a brief description of the issue.</p>
     </div>
     <!-- Email assembled by JS — never in plain HTML source -->
-    <a class="contact-email-display email-link" href="#">support@freqcraft.app</a>
+    <a class="contact-email-display email-link" href="#">support [at] freqcraft [dot] app</a>
   </div>
 
   <div style="background:var(--panel); border:1px solid var(--cyan); border-left:3px solid var(--cyan); border-radius:8px; padding:20px 22px; margin:32px 0;">
@@ -424,7 +422,7 @@
     var d = 'freqcraft.app';
     var addr = u + '@' + d;
     document.querySelectorAll('.email-link').forEach(function(el) {
-      el.href = 'mailto:' + addr;
+      el.href = 'mailto:' + addr; el.textContent = addr;
     });
   })();
 </script>

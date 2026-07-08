@@ -3,12 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="canonical" href="https://www.freqcraft.app/" />
   <title>FreqCraft — Precision Brainwave Entrainment for Android</title>
   <meta name="description" content="FreqCraft is a precision binaural beats and isochronic tones generator for Android. Full parameter control. No subscriptions. No data collected. FreqCraft Studio desktop suite in development." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/fonts.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -81,7 +78,10 @@
       border: 1px solid var(--cyan-dim);
       padding: 4px 10px;
       border-radius: 2px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
     }
+    a.badge:hover { border-color: var(--cyan); background: var(--cyan-dim); }
 
     /* ── HERO ── */
     .hero {
@@ -120,6 +120,36 @@
     }
     .hero-sub strong { color: var(--text); font-weight: 400; }
 
+    /* ── STORE CTA (launch) ── */
+    .cta-row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+    .btn-store {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      background: var(--cyan);
+      color: var(--black);
+      text-decoration: none;
+      font-family: 'Space Grotesk', sans-serif;
+      padding: 10px 28px;
+      border-radius: 4px;
+      line-height: 1.15;
+      transition: opacity 0.2s;
+    }
+    .btn-store:hover { opacity: 0.85; }
+    .btn-store .s1 { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.85; }
+    .btn-store .s2 { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.01em; }
+    .cta-price {
+      font-size: 0.74rem;
+      color: var(--muted);
+      text-align: center;
+      letter-spacing: 0.04em;
+      margin-bottom: 24px;
+    }
+
     /* ── NOTIFY FORM ── */
     .notify-wrap {
       display: flex;
@@ -128,6 +158,7 @@
       flex-wrap: wrap;
       margin-bottom: 10px;
     }
+    .notify-studio { margin-top: 4px; }
 
     .notify-wrap input[type="email"] {
       background: var(--panel);
@@ -177,15 +208,6 @@
       text-align: center;
       padding: 10px;
     }
-
-    /* ── FEATURE GRAPHIC ── */
-    .feature-graphic-wrap {
-      margin: 32px 0 0;
-      border-radius: 6px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-    .feature-graphic { width: 100%; display: block; }
 
     /* ── DIVIDER ── */
     .divider {
@@ -306,6 +328,29 @@
       margin: 4px 0 14px;
     }
 
+    /* ── DEMO VIDEO ── */
+    .demo { text-align: center; margin-bottom: 28px; }
+    .demo .eyebrow { margin-bottom: 16px; }
+    .demo-frame {
+      display: inline-block;
+      width: 100%;
+      max-width: 300px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--panel);
+      box-shadow: 0 0 44px var(--cyan-dim);
+      line-height: 0;
+    }
+    .demo-frame video { display: block; width: 100%; height: auto; }
+    .demo-cap {
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: 14px;
+    }
+
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border);
@@ -364,28 +409,44 @@
 
   <nav>
     <div class="wordmark">Freq<span>Craft</span></div>
-    <div class="badge">Coming Soon</div>
+    <a class="badge" href="https://play.google.com/store/apps/details?id=com.directivecraft.freqcraft" target="_blank" rel="noopener">Now on Google Play</a>
   </nav>
 
   <section class="hero">
-    <p class="eyebrow">Android · Precision Mobile Tool · Studio Desktop Suite Coming</p>
+    <p class="eyebrow">Now on Android · Precision Mobile Tool · Studio Coming</p>
     <h1>Your frequencies.<br><em>Your sessions.</em><br>No black boxes.</h1>
     <p class="hero-sub">
       FreqCraft is a <strong>precision audio engineering tool</strong> for brainwave entrainment exploration and experimentation.
       Every Hz value visible. Every parameter yours to edit.
       Plays silently alongside any other audio — no interruptions, no compromises.
     </p>
-    <form class="notify-wrap" action="https://buttondown.com/api/emails/embed-subscribe/freqcraft" method="post" target="bd-iframe" onsubmit="return bdNotify()">
+    <div class="cta-row">
+      <a class="btn-store" href="https://play.google.com/store/apps/details?id=com.directivecraft.freqcraft" target="_blank" rel="noopener">
+        <span class="s1">Get it on</span>
+        <span class="s2">Google Play</span>
+      </a>
+    </div>
+    <p class="cta-price">One-time purchase · No subscription · No ads · No tracking</p>
+
+    <form class="notify-wrap notify-studio" action="https://buttondown.com/api/emails/embed-subscribe/freqcraft" method="post" target="bd-iframe" onsubmit="return bdNotify()">
       <input type="email" name="email" id="emailInput" placeholder="your@email.com" autocomplete="email" required />
       <input type="hidden" name="embed" value="1" />
-      <button type="submit" class="btn-notify">Notify Me</button>
+      <button type="submit" class="btn-notify">Notify me at Studio launch</button>
     </form>
-    <p class="notify-note">Launch notification only. No marketing. No data sharing. Ever.</p>
-    <p class="success-msg" id="successMsg">✓ You're on the list. We'll reach out at launch.</p>
+    <p class="notify-note">FreqCraft Studio (desktop) waitlist. No marketing. No data sharing. Ever.</p>
+    <p class="success-msg" id="successMsg">✓ You're on the Studio list. We'll reach out at launch.</p>
     <iframe name="bd-iframe" style="display:none" title="subscribe"></iframe>
-    <div class="feature-graphic-wrap">
-      <img src="assets/feature_graphic.png" alt="FreqCraft — Precision Hz. Nothing hidden. Nothing tracked." class="feature-graphic" />
+  </section>
+
+  <section class="demo">
+    <p class="eyebrow">See it in action</p>
+    <div class="demo-frame">
+      <video src="assets/freqcraft-demo.mp4"
+             poster="assets/freqcraft-demo-poster.jpg"
+             autoplay muted loop playsinline preload="metadata"
+             aria-label="FreqCraft screen capture demo"></video>
     </div>
+    <p class="demo-cap">Actual app · Live screen capture · No narration</p>
   </section>
 
   <hr class="divider" />
@@ -570,6 +631,9 @@
   draw();
 
   // ── NOTIFY (Buttondown embed — no API key in client) ──
+  // The form posts natively to Buttondown's public embed endpoint, targeting a
+  // hidden iframe so the page doesn't navigate away. Native validation (required +
+  // type=email) blocks invalid submits, so this only fires on a valid email.
   function bdNotify() {
     document.querySelector('.notify-wrap').style.display = 'none';
     document.querySelector('.notify-note').style.display = 'none';
