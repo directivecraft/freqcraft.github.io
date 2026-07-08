@@ -288,7 +288,7 @@
       <p>Email is the only support channel, and replies come from a real person — <strong>usually within a few days</strong>, occasionally longer during developer absences. Include your Android version and a brief description of the issue.</p>
     </div>
     <!-- Email assembled by JS — never in plain HTML source -->
-    <a class="contact-email-display email-link" href="#">support [at] freqcraft [dot] app</a>
+    <a class="contact-email-display email-link" href="#">Contact Support</a>
   </div>
 
   <div style="background:var(--panel); border:1px solid var(--cyan); border-left:3px solid var(--cyan); border-radius:8px; padding:20px 22px; margin:32px 0;">
@@ -422,7 +422,7 @@
     var d = 'freqcraft.app';
     var addr = u + '@' + d;
     document.querySelectorAll('.email-link').forEach(function(el) {
-      el.href = 'mailto:' + addr; el.textContent = addr;
+      el.href = 'mailto:' + addr;
     });
   })();
 </script>
