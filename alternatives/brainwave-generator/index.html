@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FreqCraft — a modern alternative to BrainWave Generator (BWGen)</title>
+<meta name="description" content="BrainWave Generator (BWGen) was a Windows 95/98/NT binaural-beat and tone generator, last updated in 2005 and no longer maintained. FreqCraft is a maintained successor — binaural beats and isochronic tones with every Hz visible.">
+<link rel="canonical" href="https://www.freqcraft.app/alternatives/brainwave-generator/">
+<style>
+  :root{
+    --bg:#0e1116; --panel:#161b22; --line:#2a313c; --text:#e6edf3;
+    --muted:#9aa7b4; --accent:#4da3ff; --good:#3fb950; --bad:#8b949e;
+    --confirm:#d29922;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.6}
+  .wrap{max-width:960px;margin:0 auto;padding:32px 20px 80px}
+  h1{font-size:2rem;line-height:1.25;margin:0 0 8px}
+  h2{font-size:1.4rem;margin:48px 0 14px;border-bottom:1px solid var(--line);padding-bottom:8px}
+  .sub{color:var(--muted);font-size:1.05rem;margin:0 0 28px}
+  p{margin:0 0 14px}
+  a{color:var(--accent)}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:22px 0}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px}
+  .card h3{margin:0 0 6px;font-size:1.1rem}
+  .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.04em;
+    text-transform:uppercase;padding:3px 8px;border-radius:20px;margin-bottom:10px}
+  .tag.now{background:rgba(63,185,80,.15);color:var(--good);border:1px solid rgba(63,185,80,.4)}
+  .tag.soon{background:rgba(77,163,255,.15);color:var(--accent);border:1px solid rgba(77,163,255,.4)}
+  table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.95rem}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--panel);font-size:.85rem;text-transform:uppercase;letter-spacing:.03em;color:var(--muted)}
+  td.cap{font-weight:600}
+  .yes{color:var(--good);font-weight:700}
+  .no{color:var(--bad)}
+  .plan{color:var(--accent);font-weight:600}
+  .confirm{color:var(--confirm);font-weight:700;background:rgba(210,153,34,.12);
+    border-radius:4px;padding:1px 6px}
+  .dim{color:var(--muted);font-weight:400}
+  .legend{font-size:.85rem;color:var(--muted);margin:6px 0 0}
+  .pain li{margin-bottom:10px}
+  .cta{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+    padding:22px;margin-top:36px;text-align:center}
+  .btn{display:inline-block;background:var(--accent);color:#00121f;font-weight:700;
+    text-decoration:none;padding:12px 22px;border-radius:8px;margin:6px}
+  .note{background:rgba(210,153,34,.08);border:1px solid rgba(210,153,34,.35);
+    border-radius:8px;padding:14px 16px;font-size:.9rem;color:#e8d9b0;margin:18px 0}
+  footer{color:var(--muted);font-size:.82rem;margin-top:50px;border-top:1px solid var(--line);padding-top:16px}
+  @media(max-width:640px){.cards{grid-template-columns:1fr}h1{font-size:1.6rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>FreqCraft — a modern alternative to BrainWave Generator (BWGen)</h1>
+  <p class="sub">BrainWave Generator was a Windows 95/98/NT binaural-beat and tone
+  generator, last updated in 2005. It still runs for some — and crashes for many — on
+  Windows 10 and 11. FreqCraft is a maintained successor, built for devices that are
+  actually supported.</p>
+
+  <p>If you found this page, you already know what BWGen did: set a binaural beat
+  frequency, choose a carrier tone and waveform, and run it as a precise, repeatable
+  signal. FreqCraft does that on hardware from this decade — every Hz visible and
+  editable, no shareware nag, no expired-evaluation lockout, no 2005 exception dialog.</p>
+
+  <div class="cards">
+    <div class="card">
+      <span class="tag now">Available now</span>
+      <h3>FreqCraft (Android)</h3>
+      <p>A precision binaural-beat and isochronic-tone generator you can run on your phone
+      today. Every carrier and beat frequency is editable to the decimal — the fastest way
+      to get on the engine.</p>
+    </div>
+    <div class="card">
+      <span class="tag soon">In development</span>
+      <h3>FreqCraft Studio (desktop)</h3>
+      <p>The full desktop successor to BWGen: multi-voice sessions, waveform depth,
+      envelopes, layered noise and backgrounds, and export. This is the direct
+      like-for-like replacement.</p>
+    </div>
+  </div>
+
+  <h2>Feature comparison</h2>
+  <p class="legend">Legend: <span class="yes">✓</span> supported &nbsp;·&nbsp;
+    <span class="no">—</span> not supported &nbsp;·&nbsp;
+    <span class="plan">planned</span> on the roadmap.</p>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:38%">Capability</th>
+        <th>BrainWave Generator <span class="dim">(Win, 2005)</span></th>
+        <th>FreqCraft <span class="dim">(Android, now)</span></th>
+        <th>FreqCraft Studio <span class="dim">(coming)</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="cap">Precise binaural beat frequency (editable to the decimal)</td>
+        <td class="yes">✓</td><td class="yes">✓</td><td class="plan">planned</td></tr>
+      <tr><td class="cap">Precise carrier / audible pitch control</td>
+        <td class="yes">✓</td><td class="yes">✓</td><td class="plan">planned</td></tr>
+      <tr><td class="cap">Isochronic tones (no headphones)</td>
+        <td class="yes">✓ <span class="dim">(via modulation)</span></td>
+        <td class="yes">✓</td><td class="plan">planned</td></tr>
+      <tr><td class="cap">Waveform selection</td>
+        <td class="yes">✓ <span class="dim">(8 + custom)</span></td>
+        <td class="yes">✓ <span class="dim">(4: sine, square, triangle, saw)</span></td>
+        <td class="plan">planned</td></tr>
+      <tr><td class="cap">Fade in/out &amp; session timer</td>
+        <td class="yes">✓</td><td class="yes">✓</td><td class="plan">planned</td></tr>
+      <tr><td class="cap">Readout always matches the engine output</td>
+        <td class="no">—</td><td class="yes">✓</td><td class="plan">planned</td></tr>
+      <tr><td class="cap">Presets cite their source, in-app</td>
+        <td class="no">—</td><td class="yes">✓</td><td class="plan">planned</td></tr>
+      <tr><td class="cap">Multiple layered voices per session</td>
+        <td class="yes">✓ <span class="dim">(unlimited)</span></td>
+        <td class="no">—</td><td class="plan">planned</td></tr>
+      <tr><td class="cap">Timed segments / session sequencing</td>
+        <td class="yes">✓</td><td class="no">—</td><td class="plan">planned</td></tr>
+      <tr><td class="cap">Waveform harmonic filtering</td>
+        <td class="yes">✓</td><td class="no">—</td><td class="plan">planned</td></tr>
+      <tr><td class="cap">Noise generator (white / pink / brown)</td>
+        <td class="yes">✓</td><td class="no">—</td><td class="plan">planned</td></tr>
+      <tr><td class="cap">Background / nature sound layers</td>
+        <td class="yes">✓</td><td class="no">—</td><td class="plan">planned</td></tr>
+      <tr><td class="cap">Export session to audio file (.wav)</td>
+        <td class="yes">✓</td><td class="no">—</td><td class="plan">planned</td></tr>
+      <tr><td class="cap">Transducer / bass-shaker output (tactile)</td>
+        <td class="no">—</td>
+        <td class="yes">✓ <span class="dim">(clean low-frequency drive)</span></td>
+        <td class="plan">planned</td></tr>
+      <tr><td class="cap">Any frequency, entered as an exact value</td>
+        <td class="yes">✓</td><td class="yes">✓</td><td class="plan">planned</td></tr>
+      <tr><td class="cap">Runs on modern OS (current Android / Windows)</td>
+        <td class="no">— <span class="dim">(Win 95/98/NT era; crashes on modern Windows)</span></td>
+        <td class="yes">✓</td><td class="plan">planned</td></tr>
+      <tr><td class="cap">Actively maintained</td>
+        <td class="no">— <span class="dim">(last update 2005)</span></td>
+        <td class="yes">✓</td><td class="yes">✓</td></tr>
+      <tr><td class="cap">No shareware nag / no evaluation lockout</td>
+        <td class="no">— <span class="dim">($40 register; import disabled until paid)</span></td>
+        <td class="yes">✓</td><td class="yes">✓</td></tr>
+      <tr><td class="cap">No ads, no tracking, no subscription</td>
+        <td class="no">—</td>
+        <td class="yes">✓ <span class="dim">(no internet permission)</span></td>
+        <td class="plan">planned</td></tr>
+      <tr><td class="cap">One-time price</td>
+        <td class="no">— <span class="dim">($40 shareware)</span></td>
+        <td class="yes">✓ <span class="dim">($7.83)</span></td>
+        <td class="yes">✓ <span class="dim">(one-time; price TBD)</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>Why people are moving off BrainWave Generator</h2>
+  <p>These are not opinions — they come straight from the software itself:</p>
+  <ul class="pain">
+    <li><strong>It crashes on modern Windows.</strong> On current systems BWGen throws an
+    internal exception (<code>bwmain.c 3.1.12: 1361</code>) and asks you to email a bug
+    report to an address that has been dormant for years.</li>
+    <li><strong>It was built for Windows 95, 98 and NT.</strong> Version 3.1 dates to 2005.
+    There is no 64-bit build, no mobile version, and no maintenance.</li>
+    <li><strong>The evaluation copy locks out.</strong> After one month it displays
+    "EXPIRED UNREGISTERED EVALUATION COPY" and disables import until you pay the $40
+    shareware fee to a company that is no longer active.</li>
+    <li><strong>Hardware assumptions are dated.</strong> Its headline visual feature drives
+    AudioStrobe goggles — patent-restricted hardware almost nobody owns today.</li>
+  </ul>
+  <p>The engine idea was sound; the delivery is 20 years past its platform. FreqCraft
+  starts you on the core precision generator today, with the full desktop successor in
+  development.</p>
+
+  <div class="cta">
+    <h3 style="margin-top:0">Get on the engine now — or wait for the full desktop successor</h3>
+    <a class="btn" href="https://play.google.com/store/apps/details?id=com.directivecraft.freqcraft">Get FreqCraft on Google Play</a>
+    <a class="btn" style="background:transparent;color:var(--accent);border:1px solid var(--accent)" href="#studio">Notify me about FreqCraft Studio</a>
+  </div>
+
+  <footer>
+    <p>BrainWave Generator is © 1998–2005 Noromaa Solutions. AudioStrobe is a trademark of
+    AudioStrobe of Germany. FreqCraft is an independent product and is not affiliated with,
+    endorsed by, or derived from BrainWave Generator; this page compares capabilities for
+    users seeking a maintained alternative. BrainWave Generator details are taken from its
+    version 3.1 application and documentation.</p>
+  </footer>
+
+</div>
+</body>
+</html>
