@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FreqCraft — Precision Brainwave Entrainment for Android</title>
   <meta name="description" content="FreqCraft is a precision binaural beats and isochronic tones generator for Android. Full parameter control. No subscriptions. No data collected. FreqCraft Studio desktop suite in development." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.freqcraft.app/" />
+  <meta property="og:title" content="FreqCraft — Precision Brainwave Entrainment for Android" />
+  <meta property="og:description" content="Precision binaural beats and isochronic tones. Every Hz visible. No subscriptions. No tracking." />
+  <meta property="og:image" content="https://www.freqcraft.app/assets/feature_graphic.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://www.freqcraft.app/assets/feature_graphic.png" />
   <link rel="stylesheet" href="assets/fonts.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -399,6 +406,15 @@
       .footer-legal { text-align: left; }
       .footer-links { flex-direction: column; gap: 8px; }
     }
+    /* ── FEATURE GRAPHIC ── */
+    .feature-graphic-wrap {
+      margin: 32px 0 0;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .feature-graphic { width: 100%; display: block; }
+
   </style>
 </head>
 <body>
@@ -436,6 +452,9 @@
     <p class="notify-note">FreqCraft Studio (desktop) waitlist. No marketing. No data sharing. Ever.</p>
     <p class="success-msg" id="successMsg">✓ You're on the Studio list. We'll reach out at launch.</p>
     <iframe name="bd-iframe" style="display:none" title="subscribe"></iframe>
+    <div class="feature-graphic-wrap">
+      <img src="assets/feature_graphic.png" alt="FreqCraft — Precision Hz. Nothing hidden. Nothing tracked." class="feature-graphic" />
+    </div>
   </section>
 
   <section class="demo">
