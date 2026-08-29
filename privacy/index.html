@@ -310,7 +310,10 @@
     <p>FreqCraft's Android manifest contains four permissions. Two are requested by the app; two are added automatically by Android system libraries when the app is built. All four are listed in full below — none collects data, and none can access a network.</p>
     <p><strong>FOREGROUND_SERVICE / FOREGROUND_SERVICE_MEDIA_PLAYBACK</strong> — Requested by the app. Allow audio playback to continue while the app is in the background.</p>
     <p><strong>DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION</strong> — Added automatically by Android. A private, signature-level permission that locks the app's headphone-unplug listener so no other app on the device can reach it. Security only; it grants nothing outward.</p>
+    <p><strong>MODIFY_AUDIO_SETTINGS</strong> — Requested by the app. Lets the audio engine set up its own output stream. It changes nothing outside FreqCraft's own playback and reads nothing.</p>
     <p><strong>CHECK_LICENSE</strong> — Added automatically by a Google Play system library. Lets the app confirm its own Play licensing status. Collects no personal data.</p>
+    <p><strong>DUMP</strong> — Added automatically by a system library. Allows diagnostic output to the device's own log. It is not usable by FreqCraft to read other apps, and nothing is transmitted.</p>
+    <p>This list is checked against the shipping app bundle itself, not against the source, before every release.</p>
     <p>FreqCraft does <strong>not</strong> request INTERNET, ACCESS_FINE_LOCATION, READ_CONTACTS, READ_EXTERNAL_STORAGE, CAMERA, MICROPHONE, or any other sensitive permission. With no network permission, the app is architecturally incapable of transmitting data off your device.</p>
   </div>
 
@@ -325,6 +328,11 @@
   </div>
 
   <div class="policy-section">
+    <h2>Backups and Moving to a New Phone</h2>
+    <p><strong>FreqCraft is excluded from Android Auto Backup and from phone-to-phone transfer.</strong> Android backs most apps up to the owner's Google Drive automatically, and copies app data across during device migration. Both are done by the operating system rather than by the app, so an app with no network permission can still have its data carried off the handset that way.</p>
+    <p>FreqCraft opts out of both. The app declares <code>allowBackup="false"</code> and ships data-extraction rules that exclude every file from cloud backup <em>and</em> from device-to-device transfer. Both are required: the first covers older Android versions, and the second closes a phone-to-phone gap that behaves differently on different manufacturers' devices.</p>
+    <p><strong>The trade-off is deliberate and it costs you something.</strong> Your presets and settings do not follow you to a new phone. There is no cloud copy to restore from, because there is no cloud copy. Write down any preset you would not want to rebuild.</p>
+
     <h2>Data Retention and Deletion</h2>
     <p>Because no data is transmitted to or stored by Directive Craft LLC, there is no data to retain or delete on our end. All locally stored app data (sessions, presets, settings) can be deleted at any time by uninstalling FreqCraft from your device or by clearing the app's data through Android's application settings.</p>
   </div>
