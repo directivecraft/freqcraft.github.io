@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FreqCraft — Precision Brainwave Entrainment for Android</title>
-  <meta name="description" content="FreqCraft: a precision binaural beats and isochronic tones generator for Android. Every Hz visible. No subscriptions or tracking. Desktop Studio coming." />
+  <meta name="description" content="FreqCraft: a precision binaural beats and isochronic tones generator for Android. Five simultaneous voices. Every Hz visible. No subscriptions or tracking." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.freqcraft.app/" />
   <meta property="og:title" content="FreqCraft — Precision Brainwave Entrainment for Android" />
-  <meta property="og:description" content="Precision binaural beats and isochronic tones. Every Hz visible. No subscriptions. No tracking." />
+  <meta property="og:description" content="Precision binaural beats and isochronic tones. Five simultaneous voices. Every Hz visible. No subscriptions. No tracking." />
   <meta property="og:image" content="https://www.freqcraft.app/assets/feature_graphic.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://www.freqcraft.app/assets/feature_graphic.png" />
@@ -338,13 +338,31 @@
       margin: 4px 0 14px;
     }
 
-    /* ── DEMO VIDEO ── */
+    /* ── SCREENSHOT STRIP ── */
+    /* Replaced a 5.3 MB screen-capture video that showed the pre-multi-voice
+       UI. These are the same composed shots that ship on the Play listing, so
+       the store and the site cannot drift apart, and each one carries its own
+       headline — no captions to contradict each other. */
     .demo { text-align: center; margin-bottom: 28px; }
     .demo .eyebrow { margin-bottom: 16px; }
-    .demo-frame {
-      display: inline-block;
-      width: 100%;
-      max-width: 300px;
+    .shots {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      padding: 4px 2px 14px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--subtle) transparent;
+    }
+    .shots::-webkit-scrollbar { height: 6px; }
+    .shots::-webkit-scrollbar-thumb {
+      background: var(--subtle); border-radius: 3px;
+    }
+    .shot {
+      flex: 0 0 auto;
+      width: 208px;
+      scroll-snap-align: center;
       border: 1px solid var(--border);
       border-radius: 14px;
       overflow: hidden;
@@ -352,14 +370,15 @@
       box-shadow: 0 0 44px var(--cyan-dim);
       line-height: 0;
     }
-    .demo-frame video { display: block; width: 100%; height: auto; }
+    .shot img { display: block; width: 100%; height: auto; }
     .demo-cap {
       font-size: 0.72rem;
       color: var(--muted);
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      margin-top: 14px;
+      margin-top: 4px;
     }
+    @media (max-width: 600px) { .shot { width: 168px; } }
 
     /* ── FOOTER ── */
     footer {
@@ -436,6 +455,7 @@
     <h1>Your frequencies.<br><em>Your sessions.</em><br>No black boxes.</h1>
     <p class="hero-sub">
       FreqCraft is a <strong>precision audio engineering tool</strong> for brainwave entrainment exploration and experimentation.
+      Up to <strong>five simultaneous voices</strong>, each with its own carrier, beat, waveform and level envelope.
       Every Hz value visible. Every parameter yours to edit.
       Plays silently alongside any other audio — no interruptions, no compromises.
     </p>
@@ -462,13 +482,17 @@
 
   <section class="demo">
     <p class="eyebrow">See it in action</p>
-    <div class="demo-frame">
-      <video src="assets/freqcraft-demo.mp4"
-             poster="assets/freqcraft-demo-poster.jpg"
-             autoplay muted loop playsinline preload="metadata"
-             aria-label="FreqCraft screen capture demo"></video>
+    <div class="shots">
+      <div class="shot"><img src="assets/shots/1_hero.png" loading="lazy" width="1080" height="1920" alt="Five voices, one session — five voice chips at 1.957, 3.915, 7.83, 15.66 and 23.49 Hz with the scope drawing every one." /></div>
+      <div class="shot"><img src="assets/shots/2_voices.png" loading="lazy" width="1080" height="1920" alt="Every voice tuned on its own — voice 3 selected, its own carrier, beat, waveform and level envelope." /></div>
+      <div class="shot"><img src="assets/shots/3_isochronic.png" loading="lazy" width="1080" height="1920" alt="Isochronic mode, which needs no headphones." /></div>
+      <div class="shot"><img src="assets/shots/4_presets.png" loading="lazy" width="1080" height="1920" alt="Factory presets, each citing its source in the app." /></div>
+      <div class="shot"><img src="assets/shots/5_sweep.png" loading="lazy" width="1080" height="1920" alt="Beat sweep — the swept range shown on screen before the session starts." /></div>
+      <div class="shot"><img src="assets/shots/6_waveforms.png" loading="lazy" width="1080" height="1920" alt="Four real waveforms: sine, square, triangle and sawtooth." /></div>
+      <div class="shot"><img src="assets/shots/7_session.png" loading="lazy" width="1080" height="1920" alt="Session timer with fade in and fade out." /></div>
+      <div class="shot"><img src="assets/shots/8_about.png" loading="lazy" width="1080" height="1920" alt="The in-app About window, including the true-stereo checklist." /></div>
     </div>
-    <p class="demo-cap">Actual app · Live screen capture · No narration</p>
+    <p class="demo-cap">Actual app · Unretouched screens · Scroll for more</p>
   </section>
 
   <hr class="divider" />
@@ -506,6 +530,10 @@
 
   <div class="spec-strip">
     <div class="spec-item">
+      <div class="spec-val">5</div>
+      <div class="spec-key">Simultaneous Voices</div>
+    </div>
+    <div class="spec-item">
       <div class="spec-val">4</div>
       <div class="spec-key">Waveform Types</div>
     </div>
@@ -529,20 +557,19 @@
 
   <div class="callout">
     <p>
-      <strong>Brainwave Generator user?</strong> FreqCraft Mobile was built as the introductory release
-      for the entrainment community — new and experienced alike. It's a precision single-layer tone generator:
-      every Hz value visible, every parameter editable, true background mixing that runs alongside your
-      other audio without interruption. A focused tool to evaluate the FreqCraft approach before the
-      full desktop suite arrives.
+      <strong>Brainwave Generator user?</strong> The layering you came for is here.
+      FreqCraft runs <strong>up to five simultaneous voices in one session</strong>, each with its own
+      carrier, beat, waveform and level envelope — every Hz value visible, every parameter editable, and
+      true background mixing that runs alongside your other audio without interruption.
     </p>
     <p style="margin-top:14px;">
       <strong style="color:var(--cyan);">FreqCraft Studio — Desktop</strong>
     </p>
     <p style="margin-top:8px; font-size:0.88rem;">
-      The full workstation is in active development: stacked multi-layer sessions, frequency ramping
-      between states, ambient noise mixing, session programming, and community preset libraries —
-      everything BWGen offered and more, rebuilt for modern hardware. Join the waitlist above
-      to be notified at launch.
+      The full workstation is in active development: unlimited voices, timed session sequencing,
+      ambient noise and background layers, waveform harmonic filtering, .wav export, and community
+      preset libraries — the rest of what BWGen offered, rebuilt for modern hardware. Join the
+      waitlist above to be notified at launch.
     </p>
   </div>
 
