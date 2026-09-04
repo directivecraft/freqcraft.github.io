@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>An Open Protocol for Testing Auditory Entrainment — FreqCraft</title>
+<meta name="description" content="A free, plain-language experimental protocol for testing whether binaural and isochronic stimulus produces a measurable EEG change. Exact settings, a control condition, and explicit null criteria. Take it and run it." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.freqcraft.app/protocol/" />
+<meta property="og:title" content="An Open Protocol for Testing Auditory Entrainment" />
+<meta property="og:description" content="Exact stimulus settings, a control condition, and what would count as it NOT working. Free. Take it, run it, publish whatever you find." />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="stylesheet" href="/assets/fonts.css" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#0A0A0F;--panel:#13131F;--border:#1E1E32;--cyan:#00E5FF;--cyan-dim:#00E5FF33;--text:#E8E8F0;--muted:#7A7A9A;--subtle:#3A3A5A;--amber:#FFB454}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.65;-webkit-text-size-adjust:100%}
+.wrapper{max-width:800px;margin:0 auto;padding:0 24px 96px}
+a{color:var(--cyan);text-decoration:none;border-bottom:1px solid var(--cyan-dim)}
+a:hover{border-bottom-color:var(--cyan)}
+header{padding:64px 0 40px;border-bottom:1px solid var(--border)}
+.kicker{color:var(--cyan);font-size:13px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin-bottom:16px}
+h1{font-size:clamp(30px,6vw,46px);line-height:1.15;letter-spacing:-.02em;margin-bottom:20px}
+.standfirst{color:var(--muted);font-size:18px;max-width:62ch}
+h2{font-size:clamp(21px,4vw,27px);margin:56px 0 16px;letter-spacing:-.01em}
+h3{font-size:17px;margin:28px 0 10px;color:var(--cyan)}
+p{margin-bottom:16px;max-width:70ch}
+ul,ol{margin:0 0 16px 22px;max-width:70ch}
+li{margin-bottom:9px}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:22px 24px;margin:24px 0}
+.panel.flag{border-color:#4A3A1A;background:#1A1408}
+.panel.key{border-color:var(--cyan);box-shadow:0 0 0 1px var(--cyan-dim)}
+.panel h3{margin-top:0}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:15px;display:block;overflow-x:auto;white-space:nowrap}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--border)}
+th{color:var(--cyan);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+td.num{font-variant-numeric:tabular-nums;color:var(--text)}
+code{background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:2px 6px;font-size:14px;color:var(--cyan)}
+.muted{color:var(--muted)}
+.small{font-size:14px}
+footer{margin-top:72px;padding-top:28px;border-top:1px solid var(--border);color:var(--muted);font-size:14px}
+hr{border:0;border-top:1px solid var(--border);margin:44px 0}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+<header>
+  <div class="kicker">Open protocol · version 1.0 · free to use</div>
+  <h1>What would count as it <em>not</em> working?</h1>
+  <p class="standfirst">A plain-language experimental protocol for testing whether auditory entrainment stimulus produces a measurable change in the EEG. Exact settings, a control condition, and — the part that usually goes missing — an explicit statement of what a null result looks like.</p>
+</header>
+
+<h2>Why this page exists</h2>
+<p>Brainwave entrainment has a large popular literature and a small experimental one. Claims circulate faster than replications, and a great many of the frequency values in circulation have no traceable origin at all.</p>
+<p>This protocol does not argue for a conclusion. It is a recipe, written so that somebody with access to an EEG can run it without having to reconstruct the design first, and so that two people running it independently are running the same thing.</p>
+<div class="panel">
+  <p style="margin:0"><strong>Who this is for:</strong> anyone with access to an EEG — a university lab, a psychology or neuroscience department, a physiology teaching lab, a maker space, a student with a supervisor. Undergraduate coursework is a perfectly good venue for this.</p>
+</div>
+<p class="muted small">The author of this protocol does not own an EEG and has not run it. That is precisely why it is published.</p>
+
+<h2>The claim under test</h2>
+<div class="panel key">
+  <p style="margin:0"><strong>Hypothesis (H1).</strong> Listening to an amplitude- or binaurally-modulated tone at a fixed beat frequency <em>f</em> produces a measurable increase in EEG spectral power at <em>f</em> (and/or its harmonics), relative to a control condition using the same carrier tones with no beat, in the same participant on the same day.</p>
+</div>
+<p>That is deliberately narrow. It is about <strong>a measurement</strong>, not about how anyone feels, sleeps, focuses or performs. Nothing on this page tests, claims, or implies any health, wellbeing, cognitive or therapeutic outcome, and no such outcome should be inferred from any result obtained with it.</p>
+
+<h2>Equipment</h2>
+<ul>
+  <li><strong>An EEG.</strong> A research amplifier is ideal. A consumer research-grade unit is sufficient for the core measurement — a 4-channel OpenBCI Ganglion listed at <strong>US $624.99</strong> at the time of writing. <strong>Do not buy one to run this.</strong> If you do not already have access, ask a department that does; this is a good fit for existing teaching hardware.</li>
+  <li><strong>Wired stereo headphones</strong> with reliable left/right separation. ⛔ Not Bluetooth — wireless codecs can apply per-channel processing and introduce inter-channel delay, which is fatal to the binaural condition.</li>
+  <li><strong>A stimulus generator that shows you its exact numbers.</strong> This protocol was written around <a href="https://play.google.com/store/apps/details?id=com.directivecraft.freqcraft">FreqCraft</a> for Android because every carrier and beat value is visible and settable to the decimal, but any generator that lets you set and verify the same values will do. The protocol is not about the app.</li>
+</ul>
+
+<h2>Stimulus settings</h2>
+<p>Set these explicitly rather than loading a preset, so that what you report is what you ran. Read every value back off the screen before you start.</p>
+<table>
+<thead><tr><th>Condition</th><th>Mode</th><th>Carrier L</th><th>Carrier R</th><th>Beat</th><th>Wave</th></tr></thead>
+<tbody>
+<tr><td><strong>A — binaural</strong></td><td>Binaural</td><td class="num">196.085 Hz</td><td class="num">203.915 Hz</td><td class="num">7.83 Hz</td><td>Sine</td></tr>
+<tr><td><strong>B — isochronic</strong></td><td>Isochronic</td><td class="num">200.00 Hz</td><td class="num">200.00 Hz</td><td class="num">7.83 Hz</td><td>Sine</td></tr>
+<tr><td><strong>C — control</strong></td><td>Binaural</td><td class="num">200.00 Hz</td><td class="num">200.00 Hz</td><td class="num">0.00 Hz</td><td>Sine</td></tr>
+</tbody>
+</table>
+<p class="small muted">In a binaural condition the generator splits the beat across the two carriers — set carrier 200.00 Hz and beat 7.83 Hz and the app will show you 196.085 Hz left and 203.915 Hz right. Verify those two numbers on screen; they are the actual stimulus.</p>
+<p><strong>Condition C is the control and it is the whole experiment.</strong> It is acoustically matched — same carrier, same level, same duration, same instruction to the participant — and differs only in carrying no beat. Without it you cannot separate an entrainment effect from the effect of sitting still with your eyes closed listening to a tone.</p>
+<p>Fixed across all conditions: level constant (no fade in or out), continuous mode, no session timer, one voice only, volume set once and never touched again.</p>
+<p class="small muted">7.83 Hz is used here because it is a commonly cited value and sits inside the alpha/theta boundary region, not because it is special. The protocol works with any beat frequency; if you change it, report the value you used.</p>
+
+<h2>Procedure</h2>
+<ol>
+  <li><strong>Baseline.</strong> 3 minutes, eyes closed, no audio. Record.</li>
+  <li><strong>Condition block.</strong> 6 minutes of one condition, eyes closed. Record continuously.</li>
+  <li><strong>Washout.</strong> 3 minutes of silence between blocks, eyes closed.</li>
+  <li>Repeat for all three conditions.</li>
+  <li><strong>Counterbalance the order across participants</strong> (ABC, BCA, CAB, …). Order effects are real; drowsiness alone will change the alpha band over twenty minutes.</li>
+  <li><strong>Blind the participant.</strong> They should not be told which condition is which, and should not be told what is expected to happen.</li>
+</ol>
+<p>Repeat the whole session on a second day if you can. Within-participant reliability across days is more informative than adding participants.</p>
+
+<h2>What to record</h2>
+<ul>
+  <li>Continuous EEG, at minimum <strong>Oz / O1 / O2</strong> (occipital) and <strong>Pz</strong> if available. Note your reference and ground.</li>
+  <li>Sample rate and any hardware filtering, verbatim.</li>
+  <li>Markers for block start and end.</li>
+  <li>Participant state notes — sleepiness, movement, whether they think they fell asleep.</li>
+  <li>The stimulus values <em>as displayed on the generator</em>, ideally a photograph of the screen.</li>
+</ul>
+
+<h3>Analysis</h3>
+<ul>
+  <li>Discard the first 60 s of each block (onset transient, settling).</li>
+  <li>Welch PSD, 4 s windows, 50% overlap, Hann.</li>
+  <li>Primary measure: <strong>power in a ±0.5 Hz band around 7.83 Hz</strong>, normalised to total 1–30 Hz power, condition versus control, within participant.</li>
+  <li>Secondary: the same at the second harmonic (15.66 Hz); and inter-trial phase coherence at the beat frequency if your pipeline supports it.</li>
+  <li>Reject artefact-heavy epochs by a criterion fixed <em>before</em> you look at the outcome.</li>
+</ul>
+
+<h2 id="null">What would count as it <em>not</em> working</h2>
+<div class="panel key">
+<p>State this before you collect anything. It is the part most write-ups omit, and it is the reason this page exists.</p>
+<p><strong>The result is null if:</strong></p>
+<ul style="margin-bottom:0">
+  <li>Normalised power at the beat frequency in conditions A or B does not exceed the control condition C by more than the within-participant variability you measured across your baseline and washout periods; <em>or</em></li>
+  <li>Any apparent increase does not survive your pre-specified artefact rejection; <em>or</em></li>
+  <li>The effect appears in the control condition too — which would indicate you are measuring rest, attention or drowsiness rather than entrainment; <em>or</em></li>
+  <li>The direction or size of the effect is not reproducible in the same participant on a second day.</li>
+</ul>
+</div>
+<p><strong>A null result here is a real finding and it is worth publishing.</strong> The absence of published nulls is a large part of why this field is in the state it is in.</p>
+
+<h2>What this does not test</h2>
+<div class="panel flag">
+<ul style="margin:0">
+  <li>It does not test any health, clinical, therapeutic, mood, sleep, focus or performance outcome, and it must not be described as doing so.</li>
+  <li>It does not test whether any commercially sold frequency "works" for its advertised purpose.</li>
+  <li>A measured EEG change is <strong>not</strong> evidence of benefit. Those are separate questions requiring separate designs.</li>
+  <li>This is not medical or clinical guidance, and it is not for diagnostic use.</li>
+</ul>
+</div>
+<p class="small">Run it under whatever ethical approval your institution requires. Auditory stimulus of this kind is ordinary listening at ordinary volume, but participant consent and institutional review are yours to obtain, not ours to waive.</p>
+
+<h2>Where the numbers in this field come from</h2>
+<p>If you use preset values from any generator, ask where they came from before you report them. In FreqCraft, seven of the single-voice presets come from a compiled frequency listing by Michael Triggs, and two of the five-voice stacks come from an archived product listing recovered in 2019 carrying carrier and beat values only. One preset, Awakened Mind, is named after C. Maxwell Cade and Nona Coxhead's 1979 book and states inside the app which of its values were measured by spectrum analysis and which were interpreted.</p>
+<p>That last distinction is the one worth carrying into your own write-up: separate what was measured from what was inferred, and say which is which.</p>
+
+<h2>Publish whatever you find</h2>
+<p>Including nothing. Preregister if you can — <a href="https://osf.io/">OSF</a> is free. Post the raw recordings and your analysis script alongside the result if your institution allows it, so the next person can check the pipeline rather than take your word for it.</p>
+<p>This protocol is released into the public domain. No attribution required, no permission needed, no strings. Change it, improve it, disagree with it in print.</p>
+
+<hr />
+<footer>
+  <p><strong>An Open Protocol for Testing Auditory Entrainment</strong> — version 1.0.<br />
+  Published by Directive Craft LLC alongside <a href="/">FreqCraft</a>.</p>
+  <p>This page collects nothing. No analytics, no cookies, no tracking, no sign-up, no email required to read or use any of it.</p>
+  <p class="small">Version 1.0 · corrections and improvements welcome via <a href="/support/">support</a>.</p>
+</footer>
+
+</div>
+</body>
+</html>
