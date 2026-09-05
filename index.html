@@ -78,6 +78,19 @@
     }
     .wordmark span { color: var(--cyan); }
 
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-link {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--subtle);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--cyan); }
+
     .badge {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 0.7rem;
@@ -337,6 +350,17 @@
       letter-spacing: -0.02em;
       margin: 4px 0 14px;
     }
+    .story .story-cta {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+    .story .story-cta a {
+      color: var(--cyan);
+      text-decoration: none;
+      border-bottom: 1px solid var(--cyan-dim);
+    }
+    .story .story-cta a:hover { border-bottom-color: var(--cyan); }
 
     /* ── SCREENSHOT STRIP ── */
     /* Replaced a 5.3 MB screen-capture video that showed the pre-multi-voice
@@ -447,7 +471,10 @@
 
   <nav>
     <div class="wordmark">Freq<span>Craft</span></div>
-    <a class="badge" href="https://play.google.com/store/apps/details?id=com.directivecraft.freqcraft" target="_blank" rel="noopener noreferrer">Now on Google Play</a>
+    <div class="nav-right">
+      <a class="nav-link" href="/protocol/">Open Protocol</a>
+      <a class="badge" href="https://play.google.com/store/apps/details?id=com.directivecraft.freqcraft" target="_blank" rel="noopener noreferrer">Now on Google Play</a>
+    </div>
   </nav>
 
   <section class="hero">
@@ -622,11 +649,17 @@
       exploration, not a treatment. I built it because I lived something I couldn't ignore, and I wanted a
       clean, honest tool to keep exploring it.
     </p>
+    <p class="story-cta">
+      One story is not evidence. So there is <a href="/protocol/">an open protocol</a> &mdash; a free,
+      step-by-step method for testing auditory entrainment against your own EEG, with a stated null
+      result and a standing invitation to publish whatever you find. You do not need FreqCraft to run it.
+    </p>
   </section>
 
   <footer>
     <div class="footer-mark">Freq<span>Craft</span> &nbsp;·&nbsp; by Directive Craft LLC</div>
     <div class="footer-links">
+      <a href="/protocol/">Open Protocol</a>
       <a href="/privacy">Privacy Policy</a>
       <a href="/support">Support</a>
       <a href="/alternatives/brainwave-generator">BrainWave Generator alternative</a>
