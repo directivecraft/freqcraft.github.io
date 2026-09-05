@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-05T00:00:00Z",
+  "title": "Design System: FreqCraft",
+  "extensions": {
+    "colorMeta": {
+      "ground":      { "role": "neutral", "displayName": "Ground",      "canonical": "#0B0B0C", "tonalRamp": ["#0B0B0C", "#141416", "#1B1B1E", "#242428", "#3C3C42", "#5C5C64", "#8A8A93", "#C2C2C8"] },
+      "panel":       { "role": "neutral", "displayName": "Panel",       "canonical": "#141416", "tonalRamp": ["#0B0B0C", "#141416", "#1B1B1E", "#242428", "#3C3C42", "#5C5C64", "#8A8A93", "#C2C2C8"] },
+      "panel-2":     { "role": "neutral", "displayName": "Panel Recessed", "canonical": "#1B1B1E", "tonalRamp": ["#0B0B0C", "#141416", "#1B1B1E", "#242428", "#3C3C42", "#5C5C64", "#8A8A93", "#C2C2C8"] },
+      "rule":        { "role": "neutral", "displayName": "Seam",        "canonical": "#2C2C30", "tonalRamp": ["#141416", "#1B1B1E", "#2C2C30", "#3C3C42", "#4C4C54", "#66666E", "#8A8A93", "#B4B4BA"] },
+      "rule-lit":    { "role": "neutral", "displayName": "Lit Seam",    "canonical": "#3C3C42", "tonalRamp": ["#141416", "#1B1B1E", "#2C2C30", "#3C3C42", "#4C4C54", "#66666E", "#8A8A93", "#B4B4BA"] },
+      "lit":         { "role": "primary", "displayName": "Lit Amber",   "canonical": "#FFAA2B", "tonalRamp": ["#3A2600", "#5C3B00", "#855600", "#B07200", "#DC9010", "#FFAA2B", "#FFC470", "#FFE1B0"] },
+      "lit-dim":     { "role": "primary", "displayName": "Amber Dim",   "canonical": "#CE9440", "tonalRamp": ["#332000", "#4E3200", "#6E4A0E", "#8F6520", "#B07E30", "#CE9440", "#E0B676", "#F0DAB4"] },
+      "ghost":       { "role": "neutral", "displayName": "Ghost (Unlit Segment)", "canonical": "#38332B", "tonalRamp": ["#1A1712", "#26221A", "#38332B", "#4A4438", "#5E5646", "#7C7360", "#A39A83", "#C9C2AE"] },
+      "band-unlit":  { "role": "neutral", "displayName": "Band Unlit",  "canonical": "#93856A", "tonalRamp": ["#2E2A20", "#453F30", "#5E5642", "#786E55", "#93856A", "#AC9F84", "#C6BCA6", "#E0D9C9"] },
+      "live":        { "role": "secondary", "displayName": "Live Green", "canonical": "#4FD98A", "tonalRamp": ["#062B1A", "#0A4429", "#12643C", "#1C8553", "#2FAD6E", "#4FD98A", "#8AE9B4", "#C2F5DA"] },
+      "alert":       { "role": "tertiary", "displayName": "Alert Red",  "canonical": "#FF6152", "tonalRamp": ["#3A0F0B", "#5C1810", "#85251A", "#B03528", "#DC4838", "#FF6152", "#FF9084", "#FFC2BB"] },
+      "prose":       { "role": "neutral", "displayName": "Warm Off-White", "canonical": "#DAD6CD", "tonalRamp": ["#2B2A26", "#43413B", "#5E5B52", "#7A766B", "#9A968D", "#B8B4A9", "#DAD6CD", "#EFEDE6"] },
+      "prose-dim":   { "role": "neutral", "displayName": "Prose Dim",   "canonical": "#9A968D", "tonalRamp": ["#2B2A26", "#43413B", "#5E5B52", "#7A766B", "#9A968D", "#B8B4A9", "#DAD6CD", "#EFEDE6"] }
+    },
+    "typographyMeta": {
+      "display":     { "displayName": "Display", "purpose": "Page h1 only. Tight, balanced, 16-20ch; amber <em> accents." },
+      "headline":    { "displayName": "Headline", "purpose": "h2 section titles in warm off-white." },
+      "title":       { "displayName": "Title", "purpose": "h3 sub-headings inside long-form documents; amber." },
+      "body":        { "displayName": "Body", "purpose": "All running prose, held to 56ch; strong -> full off-white." },
+      "label":       { "displayName": "Lit Label", "purpose": "Section/panel labels: Hubot 700 uppercase tracked 0.14em, amber. Never a segment font." },
+      "readout":     { "displayName": "Seven-Segment Readout", "purpose": "Bare numbers only (DSEG7), always over a ghost all-eights mask, tabular-nums." },
+      "unit-label":  { "displayName": "Segment Token", "purpose": "Single lit all-caps tokens only (DSEG14): band names, waveform tags, voice numbers, privacy facts." },
+      "mono":        { "displayName": "Mono", "purpose": "Inline code, technical figcaptions, effective-date stamps." }
+    },
+    "shadows": [
+      { "name": "none", "value": "none", "purpose": "No box-shadow, text-shadow or blur exists in this system. Depth is tonal steps plus 1px borders only." }
+    ],
+    "motion": [
+      { "name": "power-on", "value": "@keyframes lite { from { color: var(--ghost); } to { color: var(--lit); } } — 0.45s steps(3), staggered 0.05s per voice row, applied under body.boot then removed ~700ms after load", "purpose": "The single authored moment: numeric readouts light up from ghost to amber on page load. Removed entirely under prefers-reduced-motion." },
+      { "name": "link-micro", "value": "border-color 0.15s; transform 0.15s", "purpose": "Link underline fill and CTA arrow nudge (3px). The only other motion." }
+    ],
+    "breakpoints": [
+      { "name": "band-collapse", "value": "460px" },
+      { "name": "plate-shrink", "value": "560px" },
+      { "name": "facts-collapse", "value": "560px" },
+      { "name": "release-collapse", "value": "600px" },
+      { "name": "voice-reflow", "value": "620px" },
+      { "name": "board-scroll", "value": "640px" },
+      { "name": "specs-collapse", "value": "720px" }
+    ],
+    "browserSurfaces": {
+      "selection": "background: #FFAA2B; color: #0B0B0C;",
+      "focusVisible": "outline: 2px solid #4FD98A; outline-offset: 2px;",
+      "scrollbar": "thumb #3C3C42 on track #141416, 12px, 3px panel-colored border"
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "cta",
+      "description": "The Google Play install and Studio waitlist submit. Green bordered control on a panel fill.",
+      "html": "<a class=\"ds-cta\" href=\"#\"><span>Get it on Google Play</span><span class=\"ds-cta-arr\">→</span></a>",
+      "css": ".ds-cta { display: inline-flex; align-items: center; gap: 10px; font-family: 'Hubot Sans', system-ui, sans-serif; font-weight: 700; font-size: 0.92rem; letter-spacing: 0.06em; text-transform: uppercase; color: #4FD98A; background: #141416; border: 1px solid #4FD98A; padding: 14px 24px; text-decoration: none; } .ds-cta:hover { background: color-mix(in srgb, #4FD98A 12%, #141416); } .ds-cta-arr { transition: transform 0.15s; } .ds-cta:hover .ds-cta-arr { transform: translateX(3px); } .ds-cta:focus-visible { outline: 2px solid #4FD98A; outline-offset: 2px; } @media (prefers-reduced-motion: reduce) { .ds-cta-arr { transition: none; } .ds-cta:hover .ds-cta-arr { transform: none; } }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "cta-ghost",
+      "description": "Secondary action (e.g. 'Notify me about Studio'). Same square shape, dimmed.",
+      "html": "<a class=\"ds-cta-ghost\" href=\"#\">Notify me about Studio</a>",
+      "css": ".ds-cta-ghost { display: inline-flex; align-items: center; gap: 10px; font-family: 'Hubot Sans', system-ui, sans-serif; font-weight: 700; font-size: 0.88rem; letter-spacing: 0.05em; text-transform: uppercase; color: #CE9440; background: #141416; border: 1px solid #3C3C42; padding: 13px 22px; text-decoration: none; } .ds-cta-ghost:hover { background: color-mix(in srgb, #4FD98A 12%, #141416); } .ds-cta-ghost:focus-visible { outline: 2px solid #4FD98A; outline-offset: 2px; }"
+    },
+    {
+      "name": "Email Field",
+      "kind": "input",
+      "refersTo": "input-email",
+      "description": "Buttondown waitlist email input. Recessed fill, square, border shifts green on focus.",
+      "html": "<input class=\"ds-input-email\" type=\"email\" placeholder=\"your@email.com\" />",
+      "css": ".ds-input-email { background: #1B1B1E; border: 1px solid #3C3C42; color: #DAD6CD; font-family: 'Hubot Sans', system-ui, sans-serif; font-size: 0.95rem; padding: 13px 16px; outline: none; border-radius: 0; } .ds-input-email::placeholder { color: #9A968D; } .ds-input-email:focus { border-color: #4FD98A; } .ds-input-email:focus-visible { outline: 2px solid #4FD98A; outline-offset: 2px; }"
+    },
+    {
+      "name": "Top Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Wordmark plus flat text links; the Play link is green. No hamburger, wraps on narrow screens.",
+      "html": "<div class=\"ds-topbar\"><a class=\"ds-brand\" href=\"/\"><span class=\"ds-mark\">Freq<b>Craft</b></span></a><nav class=\"ds-topnav\"><a href=\"#\">Protocol</a><a href=\"#\">Support</a><a class=\"ds-play\" href=\"#\">Get it ›</a></nav></div>",
+      "css": ".ds-topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; padding: 15px 24px; border-bottom: 1px solid #2C2C30; flex-wrap: wrap; background: #0B0B0C; } .ds-brand { text-decoration: none; } .ds-mark { font-family: 'Hubot Sans', system-ui, sans-serif; font-weight: 700; font-size: 1.15rem; letter-spacing: 0.03em; color: #DAD6CD; } .ds-mark b { color: #FFAA2B; } .ds-topnav { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; } .ds-topnav a { font-family: 'Hubot Sans', system-ui, sans-serif; font-weight: 600; font-size: 0.8rem; letter-spacing: 0.02em; color: #CE9440; text-decoration: none; } .ds-topnav a:hover { color: #FFAA2B; } .ds-topnav a.ds-play { color: #4FD98A; }"
+    },
+    {
+      "name": "Body Link",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Inline prose link: green text with a half-opacity green underline that fills on hover.",
+      "html": "<p style=\"color:#9A968D;font-family:'Hubot Sans',sans-serif\">See the <a class=\"ds-link\" href=\"#\">open protocol</a> for details.</p>",
+      "css": ".ds-link { color: #4FD98A; text-decoration: none; border-bottom: 1px solid color-mix(in srgb, #4FD98A 42%, transparent); transition: border-color 0.15s; } .ds-link:hover { border-bottom-color: #4FD98A; } .ds-link:focus-visible { outline: 2px solid #4FD98A; outline-offset: 2px; }"
+    },
+    {
+      "name": "Seven-Segment Readout",
+      "kind": "custom",
+      "refersTo": "readout",
+      "description": "Signature primitive: a DSEG7 number rendered over its own ghost all-eights off-state.",
+      "html": "<span class=\"ds-seg7\" data-g=\"888.888\"><span class=\"v\">007.830</span></span>",
+      "css": ".ds-seg7 { font-family: 'DSEG7', ui-monospace, monospace; color: #FFAA2B; font-variant-numeric: tabular-nums; position: relative; white-space: nowrap; display: inline-block; font-size: 1.55rem; line-height: 1; } .ds-seg7[data-g]::before { content: attr(data-g); position: absolute; left: 0; top: 0; color: #38332B; z-index: 0; pointer-events: none; } .ds-seg7 .v { position: relative; z-index: 1; }"
+    },
+    {
+      "name": "Voice Stack Row",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "One row of the five-voice session readout: voice tag, carrier Hz, beat Hz, waveform, status LED. '.off' greys everything to ghost.",
+      "html": "<div class=\"ds-stack\"><div class=\"ds-vrow\"><span class=\"ds-vn\">V1</span><span class=\"ds-seg7\" data-g=\"888.888\"><span class=\"v\">001.957</span></span><span class=\"ds-vw\">SINE</span><span class=\"ds-vd\"></span></div><div class=\"ds-vrow ds-off\"><span class=\"ds-vn\">V5</span><span class=\"ds-seg7\" data-g=\"888.888\"><span class=\"v\">023.490</span></span><span class=\"ds-vw\">SINE</span><span class=\"ds-vd\"></span></div></div>",
+      "css": ".ds-stack { background: #141416; border: 1px solid #3C3C42; } .ds-vrow { display: grid; grid-template-columns: 2.4rem 1fr 4.6rem 1.2rem; gap: 16px; align-items: center; padding: 13px 16px; border-top: 1px solid #2C2C30; } .ds-vrow:first-child { border-top: 0; } .ds-vn { font-family: 'DSEG14', ui-monospace, monospace; font-size: 0.82rem; color: #CE9440; } .ds-seg7 { font-family: 'DSEG7', ui-monospace, monospace; color: #FFAA2B; position: relative; display: inline-block; white-space: nowrap; font-size: 1.02rem; } .ds-seg7[data-g]::before { content: attr(data-g); position: absolute; left: 0; top: 0; color: #38332B; } .ds-seg7 .v { position: relative; z-index: 1; } .ds-vw { font-family: 'DSEG14', ui-monospace, monospace; font-size: 0.78rem; color: #FFAA2B; } .ds-vd { justify-self: end; width: 8px; height: 8px; border-radius: 50%; background: #4FD98A; } .ds-off .ds-vn, .ds-off .ds-seg7 .v, .ds-off .ds-vw { color: #38332B; } .ds-off .ds-vd { background: #38332B; }"
+    },
+    {
+      "name": "Register Panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "Framed callout. Default is a full 1px lit-seam border; '.key' swaps to a 1px amber left rule, '.flag' to a 1px red left rule (safety / medical).",
+      "html": "<div class=\"ds-panel ds-panel-flag\"><p><strong>What this does not test.</strong> A measured EEG change is not evidence of benefit.</p></div>",
+      "css": ".ds-panel { background: #141416; border: 1px solid #3C3C42; padding: 20px 22px; color: #DAD6CD; font-family: 'Hubot Sans', system-ui, sans-serif; line-height: 1.68; border-radius: 0; } .ds-panel p { margin: 0; max-width: 56ch; } .ds-panel strong { color: #DAD6CD; font-weight: 600; } .ds-panel-key { border: 0; border-left: 1px solid #FFAA2B; } .ds-panel-flag { border: 0; border-left: 1px solid #FF6152; }"
+    },
+    {
+      "name": "Scoreboard Table",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "The BWGen capability comparison. Green check = supported, ghost minus = not supported, amber 'Planned' chip = roadmap.",
+      "html": "<div class=\"ds-board-wrap\"><table class=\"ds-board\"><thead><tr><th>Capability</th><th>BWGen</th><th>FreqCraft</th></tr></thead><tbody><tr><td class=\"cap\">Presets cite their source, in-app</td><td class=\"c no\">−</td><td class=\"c yes\">✓</td></tr><tr><td class=\"cap\">Timed session sequencing</td><td class=\"c yes\">✓</td><td class=\"c plan\">Planned</td></tr></tbody></table></div>",
+      "css": ".ds-board-wrap { overflow-x: auto; } .ds-board { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 640px; background: #141416; border: 1px solid #3C3C42; font-family: 'Hubot Sans', system-ui, sans-serif; } .ds-board th, .ds-board td { text-align: left; padding: 11px 14px; border-bottom: 1px solid #2C2C30; border-right: 1px solid #2C2C30; vertical-align: top; } .ds-board th:last-child, .ds-board td:last-child { border-right: 0; } .ds-board thead th { font-weight: 700; font-size: 0.78rem; letter-spacing: 0.02em; color: #CE9440; background: #1B1B1E; } .ds-board td.cap { color: #DAD6CD; font-weight: 500; } .ds-board td.c { text-align: center; } .ds-board .yes { color: #4FD98A; font-size: 1.05rem; } .ds-board .no { color: #38332B; font-size: 1.05rem; } .ds-board td.plan { color: #CE9440; font-weight: 700; font-size: 0.7rem; letter-spacing: 0.04em; text-transform: uppercase; }"
+    },
+    {
+      "name": "FAQ Disclosure",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "No-JS <details> row. Mono +/− marker at right, hairline-ruled, summary turns amber on hover.",
+      "html": "<details class=\"ds-faq\"><summary>Why can’t I hear a binaural beat?</summary><div class=\"a\"><p>Binaural beats require wired stereo headphones: each ear must receive a different frequency.</p></div></details>",
+      "css": ".ds-faq { border-top: 1px solid #2C2C30; border-bottom: 1px solid #2C2C30; } .ds-faq summary { list-style: none; cursor: pointer; padding: 16px 30px 16px 0; font-family: 'Hubot Sans', system-ui, sans-serif; font-weight: 600; font-size: 1rem; color: #DAD6CD; position: relative; } .ds-faq summary::-webkit-details-marker { display: none; } .ds-faq summary::after { content: '+'; position: absolute; right: 4px; top: 14px; font-family: ui-monospace, Menlo, Consolas, monospace; color: #FFAA2B; font-size: 1.1rem; } .ds-faq[open] summary::after { content: '−'; } .ds-faq summary:hover { color: #FFAA2B; } .ds-faq .a { padding: 0 0 18px; } .ds-faq .a p { color: #9A968D; max-width: 56ch; margin: 0; font-family: 'Hubot Sans', system-ui, sans-serif; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Matte Instrument Panel",
+    "overview": "FreqCraft is drawn as a piece of bench equipment photographed in a dark room: a matte near-black chassis, a few lit amber readouts, and everything else - the seams, the unlit segments, the disabled rows - rendered with the same care as the lit parts. It borrows the visual grammar of bedside clocks, scoreboards and frequency counters: seven-segment numerals sitting over their own dim 'off' state, hairline rules dividing bays, no gloss. The product's promise is transparency - every Hz visible, nothing hidden - and the design keeps that promise literally: a numeral is shown lit over the ghost of all-eights, so you can see the display is honest about what it can and cannot show.\n\nThe system refuses three things by name: the meditation-app gradient wash, the feature-card grid, and the incumbent site's neon-glow 'audio tech' look with its always-on background wave canvas. There is no shadow anywhere and no border-radius anywhere except one 8px status dot. Colour is rationed hard - amber is the only ink that lights up, green appears only where something is genuinely actionable, red appears only in the medical register. Body copy is a warm off-white, never pure white. The page is a single centred column bordered left and right (the 'rack'), divided into stacked 'bay' sections by 1px top rules.\n\nMotion is one authored moment: a power-on sweep where the numeric readouts animate up from the ghost colour to lit, staggered per row, then the class is removed. Everything else is a link or arrow micro-transition, and prefers-reduced-motion removes even the power-on.",
+    "keyCharacteristics": [
+      "Matte near-black chassis, four tonal steps, zero shadow",
+      "Amber is the only 'lit' ink; green = live, red = medical",
+      "Seven-segment numerals over a visible 'ghost' off-state",
+      "Hairline (1px) rules are the only divider; a bordered centre column",
+      "One authored animation (power-on), reduced-motion-safe",
+      "Square corners everywhere except a single 8px LED dot"
+    ],
+    "rules": [
+      { "name": "The One Ink Rule", "body": "Amber is the only colour that reads as 'lit.' It marks numbers and the labels that name them, nothing else. If a new element isn't a readout, a reading, or the label for one, it is not amber.", "section": "colors" },
+      { "name": "The Reserved Register Rule", "body": "Green means a human can act on this right now (install, submit, follow a link). Red means medical/safety. Neither colour is available for decoration, emphasis, or hierarchy - if you reach for green or red to make something stand out, use amber or a tonal step instead.", "section": "colors" },
+      { "name": "The Honest Display Rule", "body": "Every seven-segment readout is drawn over its own ghost mask (data-g / ::before) showing the full-eights off-state in --ghost. A number is never shown floating without the unlit segments it sits in.", "section": "colors" },
+      { "name": "The Sentence / Value Split Rule", "body": "If it is a sentence or a phrase, it is Hubot Sans. If it is a bare number, it is DSEG7. If it is a single all-caps token that names a band, wave, voice or fact, it is DSEG14. There is no fourth case.", "section": "typography" },
+      { "name": "The Lit-Label-Is-Not-A-Segment Rule", "body": "The .lit section labels are Hubot 700 uppercase tracked in amber - they look 'lit' by colour and tracking, never by using the segment font. Segment fonts stay on actual readouts.", "section": "typography" },
+      { "name": "The No-Shadow Rule", "body": "There is no box-shadow, text-shadow or filter: blur() in this system. If something needs to separate from its background, give it a 1px --rule/--rule-lit border or move it one tonal step.", "section": "elevation" },
+      { "name": "The No-Glow Rule", "body": "Amber never gets a shadow, halo or bloom. The incumbent site's neon-glow treatment is the anti-reference; lit elements are flat fills of --lit.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do build every page as a rack (1px-bordered centred column, max-width 60rem / 52rem on long-form docs) of bay sections divided by single 1px --rule top borders.",
+      "Do render every bare number in DSEG7 over its ghost mask, and every single lit token (band, wave, voice, fact) in DSEG14.",
+      "Do keep amber for readouts and their labels only; reach for a tonal step (--panel, --rule-lit, --prose-dim) for any other emphasis.",
+      "Do separate surfaces with a 1px border or one tonal step - --panel inside --rule-lit, recessed things to --panel-2.",
+      "Do hold prose to max-width: 56ch and set <strong> to --prose against --prose-dim body text.",
+      "Do gate the one animation behind body.boot and remove it after load; honour prefers-reduced-motion on every motion, including scroll-behavior.",
+      "Do use the left-1px-rule register: --lit for key callouts, --alert for safety and medical blocks."
+    ],
+    "donts": [
+      "Don't add any box-shadow, text-shadow, filter: blur(), or amber glow. The neon-glow 'audio tech' look is the anti-reference.",
+      "Don't use border-radius on anything except the 8px voice-status LED.",
+      "Don't use green or red for decoration or hierarchy - green is 'actionable now,' red is 'medical,' and nothing else.",
+      "Don't set running text, multi-word labels, or headings in DSEG7 or DSEG14 - segment fonts are for values and single tokens only.",
+      "Don't introduce a feature-card grid or a gradient background; data objects run full-width and scroll rather than reflowing into cards.",
+      "Don't recolour the app screenshots - they stay at the app's real cyan and are the only full-colour imagery allowed.",
+      "Don't use pure white (#FFF) for text; body copy is warm off-white --prose / --prose-dim.",
+      "Don't add a background wave animation or an always-on canvas; the wave motif is allowed only as a static data figure."
+    ]
+  }
+}
