@@ -51,6 +51,8 @@
     p:last-child { margin-bottom:0; }
     p strong { color:var(--prose); font-weight:600; }
     .stop { color:var(--alert); font-weight:700; }
+    .safety { border-left:1px solid var(--alert); padding-left:16px; }
+    .safety strong { color:var(--alert); }
 
     .contact { border:1px solid var(--rule-lit); background:var(--panel); padding:20px 22px; margin-top:6px; }
     .contact h2 { font-size:1.05rem; margin-bottom:8px; }
@@ -108,6 +110,11 @@
     </section>
 
     <section class="bay blk">
+      <h2>Before you use it</h2>
+      <p class="safety"><strong>Do not use if you have epilepsy, seizure disorders, serious psychiatric conditions, cardiac conditions, or are pregnant.</strong> Do not use while driving or operating machinery. Discontinue immediately if you experience dizziness, disorientation, or unusual discomfort. Consult a physician if you have any neurological or cardiovascular health concerns. Read the in-app disclaimer before use.</p>
+    </section>
+
+    <section class="bay blk">
       <h2>Use wired stereo headphones</h2>
       <p>FreqCraft is built for wired stereo headphones. This is about fidelity, not volume or latency.</p>
       <p>Bluetooth and other wireless headphones re-encode audio through lossy compression (SBC, AAC, aptX, LDAC) that smears the sharp on/off edges isochronic tones depend on, and can blur the phase-stable left/right separation binaural beats require. Many wireless models also apply EQ, noise cancellation, or &ldquo;enhancement&rdquo; processing that silently alters the exact frequencies you set. A wired connection passes your signal through unmodified: what you set is what you hear.</p>
@@ -124,7 +131,7 @@
     </section>
 
     <section class="bay blk">
-      <span class="lit">Common questions</span>
+      <h2 class="lit">Common questions</h2>
 
       <details>
         <summary>My session stops playing after a few minutes.</summary>

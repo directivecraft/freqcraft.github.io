@@ -108,8 +108,9 @@
     .bandbar { display: grid; grid-template-columns: repeat(5, 1fr); background: var(--panel-2); border-bottom: 1px solid var(--rule); }
     .band { padding: 11px 10px; border-left: 1px solid var(--rule); text-align: center; }
     .band:first-child { border-left: 0; }
-    .band .n { font-family: var(--seg14); font-size: 0.82rem; color: var(--ghost); letter-spacing: 0.02em; }
-    .band .hz { font-family: var(--mono); font-size: 0.72rem; color: var(--ghost); display: block; margin-top: 5px; }
+    .band .n { font-family: var(--seg14); font-size: 0.82rem; color: #93856A; letter-spacing: 0.02em; }
+    .band .hz { font-family: var(--mono); font-size: 0.74rem; color: var(--prose-dim); display: block; margin-top: 5px; }
+    .band.on { background: var(--panel); }
     .band.on .n { color: var(--lit); }
     .band.on .hz { color: var(--lit-dim); }
 
@@ -138,8 +139,9 @@
     .vrow .vn { font-family: var(--seg14); font-size: 0.82rem; color: var(--lit-dim); }
     .vrow .seg7 { font-size: 1.02rem; }
     .vrow .vw { font-family: var(--seg14); font-size: 0.78rem; color: var(--lit); }
-    .vrow .vd { justify-self: end; color: var(--live); font-size: 0.75rem; }
-    .vrow.off .vn, .vrow.off .seg7 .v, .vrow.off .vw, .vrow.off .vd { color: var(--ghost); }
+    .vrow .vd { justify-self: end; width: 8px; height: 8px; border-radius: 50%; background: var(--live); }
+    .vrow.off .vn, .vrow.off .seg7 .v, .vrow.off .vw { color: var(--ghost); }
+    .vrow.off .vd { background: var(--ghost); }
 
     /* ── ACTIONS ────────────────────────────────────── */
     .cta {
@@ -289,11 +291,11 @@
 
       <figure class="stack" aria-label="Example five-voice session">
         <figcaption class="stack-cap"><span>Voice · Carrier Hz · Beat Hz · Wave</span><span>Session 01</span></figcaption>
-        <div class="vrow"><span class="vn">V1</span><span class="seg7" data-g="888.888"><span class="v">001.957</span></span><span class="seg7" data-g="88.888"><span class="v">01.957</span></span><span class="vw">SINE</span><span class="vd" aria-hidden="true">&#9679;</span></div>
-        <div class="vrow"><span class="vn">V2</span><span class="seg7" data-g="888.888"><span class="v">003.915</span></span><span class="seg7" data-g="88.888"><span class="v">03.915</span></span><span class="vw">SINE</span><span class="vd" aria-hidden="true">&#9679;</span></div>
-        <div class="vrow"><span class="vn">V3</span><span class="seg7" data-g="888.888"><span class="v">007.830</span></span><span class="seg7" data-g="88.888"><span class="v">07.830</span></span><span class="vw">SINE</span><span class="vd" aria-hidden="true">&#9679;</span></div>
-        <div class="vrow"><span class="vn">V4</span><span class="seg7" data-g="888.888"><span class="v">015.660</span></span><span class="seg7" data-g="88.888"><span class="v">15.660</span></span><span class="vw">SQR</span><span class="vd" aria-hidden="true">&#9679;</span></div>
-        <div class="vrow off"><span class="vn">V5</span><span class="seg7" data-g="888.888"><span class="v">023.490</span></span><span class="seg7" data-g="88.888"><span class="v">23.490</span></span><span class="vw">SINE</span><span class="vd" aria-hidden="true">&#9679;</span></div>
+        <div class="vrow"><span class="vn">V1</span><span class="seg7" data-g="888.888"><span class="v">001.957</span></span><span class="seg7" data-g="88.888"><span class="v">01.957</span></span><span class="vw">SINE</span><span class="vd" aria-hidden="true"></span></div>
+        <div class="vrow"><span class="vn">V2</span><span class="seg7" data-g="888.888"><span class="v">003.915</span></span><span class="seg7" data-g="88.888"><span class="v">03.915</span></span><span class="vw">SINE</span><span class="vd" aria-hidden="true"></span></div>
+        <div class="vrow"><span class="vn">V3</span><span class="seg7" data-g="888.888"><span class="v">007.830</span></span><span class="seg7" data-g="88.888"><span class="v">07.830</span></span><span class="vw">SINE</span><span class="vd" aria-hidden="true"></span></div>
+        <div class="vrow"><span class="vn">V4</span><span class="seg7" data-g="888.888"><span class="v">015.660</span></span><span class="seg7" data-g="88.888"><span class="v">15.660</span></span><span class="vw">SQR</span><span class="vd" aria-hidden="true"></span></div>
+        <div class="vrow off"><span class="vn">V5</span><span class="seg7" data-g="888.888"><span class="v">023.490</span></span><span class="seg7" data-g="88.888"><span class="v">23.490</span></span><span class="vw">SINE</span><span class="vd" aria-hidden="true"></span></div>
       </figure>
 
       <a class="cta" href="https://play.google.com/store/apps/details?id=com.directivecraft.freqcraft" target="_blank" rel="noopener noreferrer">
@@ -316,7 +318,7 @@
     </section>
 
     <section class="bay">
-      <span class="lit">Why it beats the black boxes</span>
+      <h2 class="lit">Why it beats the black boxes</h2>
       <div class="feat"><div class="ft">Transparency</div><div class="fb"><strong>Every Hz. Always visible.</strong> No presets you can&rsquo;t inspect. No frequencies you can&rsquo;t verify. Full parameter access on every session.</div></div>
       <div class="feat"><div class="ft">Privacy</div><div class="fb"><strong>Zero data collection.</strong> No account. No analytics. No network permission. Your sessions live on your device and nowhere else.</div></div>
       <div class="feat"><div class="ft">Control</div><div class="fb"><strong>One-time purchase.</strong> No subscription. No ads. No paywalled features. Buy it once, own it completely.</div></div>
@@ -324,7 +326,7 @@
     </section>
 
     <section class="bay">
-      <span class="lit">What layering sounds like</span>
+      <h2 class="lit">What layering sounds like</h2>
       <p class="measure" style="color:var(--prose-dim);margin-bottom:18px;">
         Two voices whose carriers sit close together beat against each other inside the same ear.
         Stack five and the session has a texture no single tone can produce: the thing Brainwave
@@ -343,7 +345,7 @@
     </section>
 
     <section class="bay">
-      <span class="lit">The actual app · unretouched</span>
+      <h2 class="lit">The actual app · unretouched</h2>
       <div class="plates">
         <figure class="plate"><img src="assets/shots/1_hero.png" loading="lazy" width="1080" height="1920" alt="Five voices in one session, at 1.957, 3.915, 7.83, 15.66 and 23.49 Hz, with the scope drawing every one." /><figcaption>Five voices, one session</figcaption></figure>
         <figure class="plate"><img src="assets/shots/2_voices.png" loading="lazy" width="1080" height="1920" alt="Voice 3 selected, showing its own carrier, beat, waveform and level envelope." /><figcaption>Every voice tuned on its own</figcaption></figure>
@@ -355,8 +357,7 @@
 
     <section class="bay">
       <div class="studio">
-        <span class="lit dim" style="display:block;margin-bottom:12px;">FreqCraft Studio · Desktop</span>
-        <h2>The full workstation is being built.</h2>
+        <h2>FreqCraft Studio: the full desktop workstation is being built.</h2>
         <p>
           Unlimited voices, timed session sequencing, ambient noise and background layers, waveform
           harmonic filtering, .wav export, and community preset libraries: the rest of what Brainwave
@@ -374,7 +375,7 @@
     </section>
 
     <section class="bay">
-      <span class="lit">Where the numbers come from</span>
+      <h2 class="lit">Where the numbers come from</h2>
       <p class="cite">
         FreqCraft&rsquo;s factory presets are drawn from the
         <a href="https://www.lunarsight.com/freq.htm" target="_blank" rel="noopener noreferrer">Brainwave/Cymatic Frequency Listing</a>
@@ -403,8 +404,11 @@
       </a>
     </div>
     <p class="legal">
-      For personal audio experimentation only. Not a medical device. Not FDA-regulated. Consult a
-      physician before use if you have epilepsy, seizure disorders, or cardiac conditions.
+      For personal audio experimentation only. Not a medical device, not FDA-regulated. Do not use
+      if you have epilepsy, seizure disorders, serious psychiatric conditions, cardiac conditions,
+      or are pregnant. Do not use while driving or operating machinery. Discontinue immediately if
+      you experience dizziness, disorientation, or unusual discomfort. Consult a physician if you
+      have any neurological or cardiovascular health concerns.
     </p>
     <p class="ns">No analytics · No cookies · No tracking on this page</p>
   </footer>
