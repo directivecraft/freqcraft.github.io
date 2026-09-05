@@ -3,449 +3,218 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="canonical" href="https://www.freqcraft.app/support/" />
   <title>Support — FreqCraft</title>
-  <meta name="description" content="FreqCraft support and contact. Get help with the precision binaural beats and isochronic tones generator for Android." />
+  <meta name="description" content="FreqCraft support: wired-headphone and phone audio-settings guidance, a full FAQ, and how to reach a real person by email." />
+  <link rel="canonical" href="https://www.freqcraft.app/support/" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
-  <link rel="stylesheet" href="../assets/fonts.css" />
+  <link rel="stylesheet" href="/assets/fonts.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --black:    #0A0A0F;
-      --panel:    #13131F;
-      --border:   #1E1E32;
-      --cyan:     #00E5FF;
-      --cyan-dim: #00E5FF33;
-      --text:     #E8E8F0;
-      --muted:    #7A7A9A;
-      --subtle:   #3A3A5A;
+      --ground:#0B0B0C; --panel:#141416; --panel-2:#1B1B1E; --rule:#2C2C30; --rule-lit:#3C3C42;
+      --lit:#FFAA2B; --lit-dim:#CE9440; --ghost:#38332B; --live:#4FD98A; --alert:#FF6152;
+      --prose:#DAD6CD; --prose-dim:#9A968D;
+      --ui:'Hubot Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+      --mono:ui-monospace,'SF Mono','JetBrains Mono',Menlo,Consolas,monospace;
+      --wide:60rem; --pad:clamp(18px,5vw,40px);
     }
+    html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+    body { background:var(--ground); color:var(--prose); font-family:var(--ui); font-size:16px; line-height:1.64; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+    ::selection { background:var(--lit); color:#0B0B0C; }
+    :focus-visible { outline:2px solid var(--live); outline-offset:2px; }
+    * { scrollbar-color:var(--rule-lit) var(--ground); }
+    a { color:var(--live); text-decoration:none; border-bottom:1px solid color-mix(in srgb,var(--live) 42%,transparent); transition:border-color .15s; }
+    a:hover { border-bottom-color:var(--live); }
+    code { font-family:var(--mono); font-size:0.86em; color:var(--lit-dim); background:var(--panel-2); border:1px solid var(--rule-lit); padding:1px 5px; }
 
-    html { scroll-behavior: smooth; }
+    .rack { max-width:var(--wide); margin:0 auto; border-left:1px solid var(--rule); border-right:1px solid var(--rule); }
+    .bay { padding:clamp(26px,4.5vw,44px) var(--pad); border-top:1px solid var(--rule); }
+    main.rack > .bay:first-child { border-top:0; }
 
-    body {
-      background: var(--black);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+    .topbar { display:flex; align-items:center; justify-content:space-between; gap:12px 24px; padding:15px var(--pad); border-bottom:1px solid var(--rule); flex-wrap:wrap; }
+    .brand { display:flex; align-items:baseline; gap:12px; border:0; }
+    .brand .mark { font-family:var(--ui); font-weight:700; font-size:1.12rem; letter-spacing:0.03em; color:var(--prose); }
+    .brand .mark b { color:var(--lit); }
+    .topnav { display:flex; gap:22px; flex-wrap:wrap; }
+    .topnav a { font-family:var(--ui); font-weight:600; font-size:0.82rem; color:var(--lit-dim); border:0; }
+    .topnav a:hover { color:var(--lit); }
+    .topnav a.play { color:var(--live); }
 
-    #waveCanvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.08;
-    }
+    .lit { font-family:var(--ui); font-weight:700; font-size:0.82rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--lit); display:block; margin-bottom:14px; }
+    h1 { font-family:var(--ui); font-size:clamp(1.9rem,5vw,2.8rem); font-weight:700; line-height:1.1; letter-spacing:-0.02em; color:var(--prose); margin-bottom:14px; }
+    h2 { font-family:var(--ui); font-size:clamp(1.2rem,2.8vw,1.5rem); font-weight:700; letter-spacing:-0.01em; color:var(--prose); margin-bottom:12px; }
+    h3 { font-family:var(--ui); font-size:1.02rem; font-weight:700; color:var(--prose); margin:20px 0 8px; }
+    .lead { color:var(--prose-dim); font-size:1.05rem; max-width:56ch; }
+    p { max-width:56ch; margin-bottom:14px; color:var(--prose-dim); }
+    p:last-child { margin-bottom:0; }
+    p strong { color:var(--prose); font-weight:600; }
+    .stop { color:var(--alert); font-weight:700; }
 
-    .wrapper {
-      position: relative;
-      z-index: 1;
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 0 24px 64px;
-    }
+    .contact { border:1px solid var(--rule-lit); background:var(--panel); padding:20px 22px; margin-top:6px; }
+    .contact h2 { font-size:1.05rem; margin-bottom:8px; }
+    .cta { display:inline-flex; align-items:center; gap:9px; margin-top:14px; font-family:var(--ui); font-weight:700; font-size:0.86rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--live); background:var(--panel); border:1px solid var(--live); padding:12px 20px; }
+    .cta:hover { background:color-mix(in srgb,var(--live) 12%,var(--panel)); }
+    .ns-mail { font-family:var(--mono); font-size:0.86rem; color:var(--prose); margin-top:12px; }
 
-    /* NAV */
-    nav {
-      padding: 24px 0 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+    section.blk + section.blk { border-top:1px solid var(--rule); }
 
-    .wordmark {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      text-decoration: none;
-    }
-    .wordmark span { color: var(--cyan); }
+    details { border-top:1px solid var(--rule); }
+    details:last-of-type { border-bottom:1px solid var(--rule); }
+    summary { list-style:none; cursor:pointer; padding:16px 30px 16px 0; font-family:var(--ui); font-weight:600; font-size:1rem; color:var(--prose); position:relative; }
+    summary::-webkit-details-marker { display:none; }
+    summary::after { content:"+"; position:absolute; right:4px; top:14px; font-family:var(--mono); color:var(--lit); font-size:1.1rem; }
+    details[open] summary::after { content:"\2212"; }
+    summary:hover { color:var(--lit); }
+    details .a { padding:0 0 18px; }
+    details .a p { color:var(--prose-dim); max-width:56ch; }
 
-    .back-link {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      border: 1px solid var(--border);
-      padding: 5px 12px;
-      border-radius: 2px;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .back-link:hover { color: var(--cyan); border-color: var(--cyan-dim); }
+    .foot { padding:26px var(--pad); display:flex; flex-wrap:wrap; gap:16px 28px; justify-content:space-between; align-items:baseline; border-top:1px solid var(--rule); }
+    .foot .fm { font-family:var(--ui); font-weight:700; font-size:0.88rem; color:var(--prose-dim); }
+    .foot .fm b { color:var(--lit-dim); }
+    .foot nav { display:flex; flex-wrap:wrap; gap:10px 20px; }
+    .foot nav a { font-family:var(--ui); font-weight:600; font-size:0.8rem; color:var(--lit-dim); border:0; }
+    .foot nav a:hover { color:var(--lit); }
+    .legal { padding:16px var(--pad) 30px; border-top:1px solid var(--rule); color:var(--prose-dim); font-size:0.82rem; line-height:1.6; max-width:56ch; }
+    .legal b { color:var(--prose); font-weight:600; }
 
-    /* PAGE HEADER */
-    .page-header {
-      padding: 48px 0 32px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 40px;
-    }
-
-    .eyebrow {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 12px;
-    }
-
-    h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: var(--text);
-      margin-bottom: 12px;
-    }
-
-    .header-sub {
-      font-size: 0.9rem;
-      color: var(--muted);
-      max-width: 500px;
-      line-height: 1.7;
-    }
-
-    /* CONTACT BLOCK */
-    .contact-block {
-      background: var(--panel);
-      border: 1px solid var(--cyan-dim);
-      border-left: 3px solid var(--cyan);
-      padding: 24px 28px;
-      margin-bottom: 40px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .contact-block-text .contact-label {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 8px;
-    }
-
-    .contact-block-text p {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.6;
-      max-width: 480px;
-    }
-    .contact-block-text p strong {
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    .contact-email-display {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--cyan);
-      letter-spacing: 0.02em;
-      white-space: nowrap;
-      padding-top: 24px;
-      text-decoration: none;
-    }
-
-    /* FAQ SECTION */
-    .faq-section {
-      margin-bottom: 40px;
-    }
-
-    .faq-section h2 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-      padding: 20px 0;
-    }
-    .faq-item:last-child { border-bottom: none; }
-
-    .faq-q {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 10px;
-    }
-
-    .faq-a {
-      font-size: 0.875rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-    .faq-a strong { color: var(--text); font-weight: 500; }
-
-    /* DISCLAIMER BLOCK */
-    .disclaimer-block {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      padding: 24px 28px;
-      margin-bottom: 40px;
-    }
-
-    .disclaimer-block .dis-label {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--subtle);
-      margin-bottom: 12px;
-    }
-
-    .disclaimer-block p {
-      font-size: 0.8rem;
-      color: var(--subtle);
-      line-height: 1.75;
-    }
-
-    /* FOOTER */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 24px 0 0;
-      margin-top: 8px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .footer-mark {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--subtle);
-    }
-    .footer-mark span { color: var(--cyan); }
-
-    .footer-links {
-      display: flex;
-      gap: 20px;
-    }
-    .footer-links a {
-      font-size: 0.75rem;
-      color: var(--subtle);
-      text-decoration: none;
-      letter-spacing: 0.04em;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--cyan); }
-
-    @media (max-width: 600px) {
-      nav { flex-direction: column; align-items: flex-start; gap: 10px; }
-      .contact-block { flex-direction: column; }
-      .contact-email-display { padding-top: 0; }
-      .footer-links { flex-direction: column; gap: 8px; }
-    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } }
   </style>
 </head>
 <body>
 
-<canvas id="waveCanvas"></canvas>
-
-<div class="wrapper">
-
-  <nav>
-    <a href="/" class="wordmark">Freq<span>Craft</span></a>
-    <a href="/" class="back-link">← Back</a>
-  </nav>
-
-  <div class="page-header">
-    <p class="eyebrow">Help</p>
-    <h1>Support</h1>
-    <p class="header-sub">FreqCraft is built to be self-explanatory. If something isn't working or you have a question, reach out directly.</p>
-  </div>
-
-  <div class="contact-block">
-    <div class="contact-block-text">
-      <div class="contact-label">Contact</div>
-      <p>Email is the only support channel, and replies come from a real person — <strong>usually within a few days</strong>, occasionally longer during developer absences. Include your Android version and a brief description of the issue.</p>
+  <header class="rack">
+    <div class="topbar">
+      <a class="brand" href="/"><span class="mark">Freq<b>Craft</b></span></a>
+      <nav class="topnav">
+        <a href="/">Home</a>
+        <a href="/protocol/">Protocol</a>
+        <a class="play" href="https://play.google.com/store/apps/details?id=com.directivecraft.freqcraft" target="_blank" rel="noopener noreferrer">Get it &rsaquo;</a>
+      </nav>
     </div>
-    <!-- Email assembled by JS — never in plain HTML source -->
-    <a class="contact-email-display email-link" href="#">Contact Support</a>
-  </div>
+  </header>
 
-  <div style="background:var(--panel); border:1px solid var(--cyan); border-left:3px solid var(--cyan); border-radius:8px; padding:20px 22px; margin:32px 0;">
-    <div style="color:var(--cyan); font-weight:700; letter-spacing:0.02em; margin-bottom:8px;">Use wired stereo headphones</div>
-    <p style="color:var(--text); margin:0 0 10px;">FreqCraft is built for <strong>wired</strong> stereo headphones. This is about fidelity, not volume or latency.</p>
-    <p style="color:var(--muted); margin:0;">Bluetooth and other wireless headphones re-encode audio through lossy compression (SBC, AAC, aptX, LDAC) that smears the sharp on/off edges isochronic tones depend on, and can blur the phase-stable left/right separation binaural beats require. Many wireless models also apply EQ, noise cancellation, or "enhancement" processing that silently alters the exact frequencies you set. A wired connection passes your signal through unmodified — what you set is what you hear.</p>
-  </div>
+  <main class="rack">
+    <section class="bay">
+      <h1>Support</h1>
+      <p class="lead">FreqCraft is built to be self-explanatory. If something isn&rsquo;t working or you have a question, reach out directly.</p>
+      <div class="contact">
+        <h2>Contact</h2>
+        <p>Email is the only support channel, and replies come from a real person, usually within a few days, occasionally longer during developer absences. Include your Android version and a brief description of the issue.</p>
+        <a class="cta email-link" href="#">Contact support &rarr;</a>
+        <noscript><p class="ns-mail">Direct email: support&#64;freqcraft&#46;app</p></noscript>
+      </div>
+    </section>
 
-  <div style="background:var(--panel); border:1px solid var(--cyan); border-left:3px solid var(--cyan); border-radius:8px; padding:20px 22px; margin:32px 0;">
-    <div style="color:var(--cyan); font-weight:700; letter-spacing:0.02em; margin-bottom:8px;">Check your phone's audio settings</div>
-    <p style="color:var(--text); margin:0 0 10px;">Two phone-side settings can quietly break the binaural effect even with perfect headphones:</p>
-    <p style="color:var(--muted); margin:0 0 10px;"><strong>Mono audio</strong> (Settings &rarr; Accessibility &rarr; Audio/Hearing) merges the left and right channels into one. Binaural beats need each ear to receive a different frequency — in Mono, the two tones collapse together and you hear a pulsing "wah-wah," even through a single earbud. Turn Mono audio <strong>off</strong>.</p>
-    <p style="color:var(--muted); margin:0;"><strong>System EQ, Dolby Atmos, "surround sound" / spatial audio, or other "audio enhancement"</strong> alter the exact signal you set — and surround or spatial modes can push the beat into a single ear, the same way Mono does. Turn them all off for an unmodified signal.</p>
-    <p style="color:var(--text); margin:10px 0 0;"><strong>Quick test &mdash; one voice.</strong> Turn all voices off but one. A single binaural voice should sound like one smooth, steady tone. If it pulses "wah-wah," or you hear the beat with one earbud in, your stereo is being collapsed &mdash; almost always Mono audio. <strong>Two or more voices pulse on purpose:</strong> voices whose carriers sit close together beat against each other inside the same ear. That is the layering working, not a fault.</p>
-  </div>
+    <section class="bay blk">
+      <h2>Use wired stereo headphones</h2>
+      <p>FreqCraft is built for wired stereo headphones. This is about fidelity, not volume or latency.</p>
+      <p>Bluetooth and other wireless headphones re-encode audio through lossy compression (SBC, AAC, aptX, LDAC) that smears the sharp on/off edges isochronic tones depend on, and can blur the phase-stable left/right separation binaural beats require. Many wireless models also apply EQ, noise cancellation, or &ldquo;enhancement&rdquo; processing that silently alters the exact frequencies you set. A wired connection passes your signal through unmodified: what you set is what you hear.</p>
 
-  <div style="background:var(--panel); border:1px solid var(--border); border-left:3px solid var(--cyan); border-radius:8px; padding:20px 22px; margin:32px 0;">
-    <div style="color:var(--cyan); font-weight:700; letter-spacing:0.02em; margin-bottom:8px;">Vibrational transducers (contact speakers)</div>
-    <p style="color:var(--text); margin:0 0 10px;">FreqCraft's <strong>isochronic mode</strong> is compatible with vibrational transducers — contact speakers that convert an audio signal directly into physical vibration.</p>
-    <p style="color:var(--muted); margin:0;">Binaural mode requires stereo separation between two ears and is headphone-specific. Isochronic mode outputs a single-channel pulse signal with no stereo dependency, making it the correct choice for any single-driver output device — including contact speakers, bone conduction transducers, and PEMF devices with 3.5mm audio input. Connect via wired 3.5mm output from your Android device. FreqCraft makes no claims about physiological effects of vibrational delivery — this is user-directed experimentation with an audio signal.</p>
-  </div>
+      <h3>Check your phone&rsquo;s audio settings</h3>
+      <p>Two phone-side settings can quietly break the binaural effect even with perfect headphones:</p>
+      <p><strong>Mono audio</strong> (Settings &rarr; Accessibility &rarr; Audio/Hearing) merges the left and right channels into one. Binaural beats need each ear to receive a different frequency; in Mono, the two tones collapse together and you hear a pulsing &ldquo;wah-wah,&rdquo; even through a single earbud. Turn Mono audio off.</p>
+      <p><strong>System EQ, Dolby Atmos, &ldquo;surround sound&rdquo; / spatial audio</strong>, or other &ldquo;audio enhancement&rdquo; alter the exact signal you set, and surround or spatial modes can push the beat into a single ear, the same way Mono does. Turn them all off for an unmodified signal.</p>
+      <p><strong>Quick test, one voice.</strong> Turn all voices off but one. A single binaural voice should sound like one smooth, steady tone. If it pulses &ldquo;wah-wah,&rdquo; or you hear the beat with one earbud in, your stereo is being collapsed, almost always Mono audio. Two or more voices pulse on purpose: voices whose carriers sit close together beat against each other inside the same ear. That is the layering working, not a fault.</p>
 
-  <div class="faq-section">
-    <h2>Common Questions</h2>
+      <h3>Vibrational transducers (contact speakers)</h3>
+      <p>FreqCraft&rsquo;s isochronic mode is compatible with vibrational transducers, contact speakers that convert an audio signal directly into physical vibration.</p>
+      <p>Binaural mode requires stereo separation between two ears and is headphone-specific. Isochronic mode outputs a single-channel pulse signal with no stereo dependency, making it the correct choice for any single-driver output device, including contact speakers, bone conduction transducers, and PEMF devices with 3.5mm audio input. Connect via wired 3.5mm output from your Android device. FreqCraft makes no claims about physiological effects of vibrational delivery; this is user-directed experimentation with an audio signal.</p>
+    </section>
 
-    <div class="faq-item">
-      <div class="faq-q">My session stops playing after a few minutes.</div>
-      <div class="faq-a">This is almost always your phone's <strong>battery optimization</strong> shutting down background audio — most common on Samsung, Xiaomi, Sony, and Huawei devices. To fix it, exclude FreqCraft from battery optimization: open your phone's <strong>Settings</strong>, search for "battery" or "app battery usage," find <strong>FreqCraft</strong>, and set it to <strong>Unrestricted</strong> (some phones label this "Don't optimize"). Stock Android and Pixel devices are rarely affected. FreqCraft already runs a background audio service to keep long sessions alive — the Unrestricted setting above is only needed on the most aggressive OEMs.</div>
+    <section class="bay blk">
+      <span class="lit">Common questions</span>
+
+      <details>
+        <summary>My session stops playing after a few minutes.</summary>
+        <div class="a"><p>This is almost always your phone&rsquo;s battery optimization shutting down background audio, most common on Samsung, Xiaomi, Sony, and Huawei devices. To fix it, exclude FreqCraft from battery optimization: open your phone&rsquo;s Settings, search for &ldquo;battery&rdquo; or &ldquo;app battery usage,&rdquo; find FreqCraft, and set it to Unrestricted (some phones label this &ldquo;Don&rsquo;t optimize&rdquo;). Stock Android and Pixel devices are rarely affected. FreqCraft already runs a background audio service to keep long sessions alive; the Unrestricted setting above is only needed on the most aggressive OEMs.</p></div>
+      </details>
+
+      <details>
+        <summary>Why can&rsquo;t I hear a binaural beat?</summary>
+        <div class="a"><p>Binaural beats require wired stereo headphones: each ear must receive a different frequency. Speakers output the same signal to both ears, which cancels the effect. Plug in wired headphones and try again. (Bluetooth headphones can degrade the effect, see the note above. If it plays but pulses like a wah-wah, that may be normal with more than one voice, see the next question.)</p></div>
+      </details>
+
+      <details>
+        <summary>The binaural beat sounds like a pulsing &ldquo;wah-wah.&rdquo;</summary>
+        <div class="a"><p>First, check how many voices are on. Two or more voices whose carriers sit close together beat against each other inside the same ear, and that pulsing is the layering doing its job, not a fault. Turn all voices off but one. If a single voice still pulses, or you hear the beat with one earbud in, your phone is collapsing stereo to Mono: binaural needs a different frequency in each ear, and Mono merges them into one channel so the two tones beat audibly in a single output. Go to Settings &rarr; Accessibility &rarr; Audio/Hearing and turn Mono audio off. Also switch off any system EQ, Dolby Atmos, or &ldquo;surround sound&rdquo; / spatial audio; these remix the stereo channels the same way and can push the beat into one ear.</p></div>
+      </details>
+
+      <details>
+        <summary>FreqCraft is pausing my music when I start a session.</summary>
+        <div class="a"><p>This should not happen; background mixing is a core feature. If it does occur, force-stop both apps, reopen your music app first, let it begin playing, then open FreqCraft and start your session. If the issue persists, email support with your Android version and device model.</p></div>
+      </details>
+
+      <details>
+        <summary>What is the difference between binaural and isochronic modes?</summary>
+        <div class="a"><p><strong>Binaural:</strong> two slightly different frequencies, one in each ear. Your brain perceives the difference as a beat. Requires stereo headphones. <strong>Isochronic:</strong> a single tone that switches on and off at the target rate. Works on speakers. Both methods target the same brainwave entrainment goal; the delivery mechanism differs.</p></div>
+      </details>
+
+      <details>
+        <summary>What do the carrier and beat frequency fields do?</summary>
+        <div class="a"><p>The carrier frequency sets the pitch of the tone (e.g. 200 Hz). The beat frequency (binaural) or pulse rate (isochronic) sets the entrainment target, the brainwave frequency you are targeting (e.g. 10 Hz for alpha). Keep carrier below 1000 Hz and beat up to about 40 Hz (delta through gamma) for effective results.</p></div>
+      </details>
+
+      <details>
+        <summary>Which waveform should I use?</summary>
+        <div class="a"><p>Sine is the recommended default and the standard for entrainment, a single clean frequency with no added overtones. Square, sawtooth, and triangle are provided for exploration: they add harmonic overtones that can sound bright or harsh, most noticeably at higher carrier frequencies. Isochronic mode always uses a sine carrier for the cleanest pulse. Every waveform stays available; sine is simply the most precise.</p></div>
+      </details>
+
+      <details>
+        <summary>Can I use FreqCraft with a PEMF device or contact speaker?</summary>
+        <div class="a"><p>Yes, if your device accepts a standard 3.5mm audio input. Use isochronic mode: it outputs a single-channel pulse signal with no stereo dependency, which is the correct choice for any single-driver transducer output. See the Vibrational transducers note above for details. FreqCraft makes no claims about PEMF efficacy or physiological effects of vibrational delivery.</p></div>
+      </details>
+
+      <details>
+        <summary>Can I stack multiple frequencies or add background noise?</summary>
+        <div class="a"><p>Stacking, yes: up to five simultaneous voices, each with its own carrier, beat, waveform and level envelope, all in one session. Tap a voice chip to edit that voice; switch it off to drop it out. Background noise, not yet: ambient noise mixing, timed session sequencing and .wav export are coming in FreqCraft Studio for desktop, currently in development. You can run FreqCraft alongside a separate noise or ambient app in the meantime; background mixing keeps both playing.</p></div>
+      </details>
+
+      <details>
+        <summary>Will my presets move to a new phone?</summary>
+        <div class="a"><p>No, and that is deliberate. Android normally copies app data to your Google Drive and carries it across during a phone-to-phone transfer; the operating system does that, not the app, which is how an app with no internet permission can still end up with its data off your handset. FreqCraft opts out of both, so your presets and settings exist only on the device you made them on. The cost is real: they do not follow you to a new phone, and there is no cloud copy to restore from. Write down any preset you would not want to rebuild. A preset is a short list of numbers, carrier, beat, waveform and level per voice, so rebuilding one is quick once you have them noted.</p></div>
+      </details>
+
+      <details>
+        <summary>How do I get a refund?</summary>
+        <div class="a"><p>Refund requests are handled through Google Play. Open the Play Store, find your purchase, and request a refund through Google&rsquo;s standard process. Google Play&rsquo;s refund policy governs all purchases.</p></div>
+      </details>
+
+      <details>
+        <summary>Does FreqCraft collect any of my data?</summary>
+        <div class="a"><p>No. FreqCraft has no internet permission and cannot transmit data. All sessions, presets, and settings are stored locally on your device only. See the <a href="/privacy/">Privacy Policy</a> for the full details.</p></div>
+      </details>
+
+      <details>
+        <summary>Is FreqCraft safe to use?</summary>
+        <div class="a"><p>Read the in-app disclaimer before use. <span class="stop">Do not use if you have epilepsy, seizure disorders, serious psychiatric conditions, cardiac conditions, or are pregnant.</span> Do not use while driving or operating machinery. Discontinue immediately if you experience dizziness, disorientation, or unusual discomfort. Consult a physician if you have any neurological or cardiovascular health concerns.</p></div>
+      </details>
+    </section>
+  </main>
+
+  <footer class="rack">
+    <div class="foot">
+      <span class="fm">Freq<b>Craft</b> &nbsp;·&nbsp; by Directive Craft LLC</span>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/story/">Story</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/alternatives/brainwave-generator">BWGen</a>
+      </nav>
     </div>
-
-    <div class="faq-item">
-      <div class="faq-q">Why can't I hear a binaural beat?</div>
-      <div class="faq-a">Binaural beats require <strong>wired stereo headphones</strong> — each ear must receive a different frequency. Speakers output the same signal to both ears, which cancels the effect. Plug in wired headphones and try again. (Bluetooth headphones can degrade the effect — see the note above. If it plays but <em>pulses</em> like a wah-wah, that may be normal with more than one voice — see the next question.)</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">The binaural beat sounds like a pulsing "wah-wah."</div>
-      <div class="faq-a"><strong>First, check how many voices are on.</strong> Two or more voices whose carriers sit close together beat against each other inside the same ear, and that pulsing is the layering doing its job &mdash; not a fault. <strong>Turn all voices off but one.</strong> If a single voice still pulses, or you hear the beat with one earbud in, your phone is collapsing stereo to <strong>Mono</strong>: binaural needs a different frequency in each ear, and Mono merges them into one channel so the two tones beat audibly in a single output. Go to <strong>Settings &rarr; Accessibility &rarr; Audio/Hearing</strong> and turn <strong>Mono audio off</strong>. Also switch off any system EQ, Dolby Atmos, or "surround sound" / spatial audio &mdash; these remix the stereo channels the same way and can push the beat into one ear.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">FreqCraft is pausing my music when I start a session.</div>
-      <div class="faq-a">This should not happen — background mixing is a core feature. If it does occur, force-stop both apps, reopen your music app first, let it begin playing, then open FreqCraft and start your session. If the issue persists, email support with your Android version and device model.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">What is the difference between binaural and isochronic modes?</div>
-      <div class="faq-a"><strong>Binaural:</strong> Two slightly different frequencies — one in each ear. Your brain perceives the difference as a beat. Requires stereo headphones. <strong>Isochronic:</strong> A single tone that switches on and off at the target rate. Works on speakers. Both methods target the same brainwave entrainment goal — the delivery mechanism differs.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">What do the carrier and beat frequency fields do?</div>
-      <div class="faq-a">The <strong>carrier frequency</strong> sets the pitch of the tone (e.g., 200 Hz). The <strong>beat frequency</strong> (binaural) or <strong>pulse rate</strong> (isochronic) sets the entrainment target — the brainwave frequency you are targeting (e.g., 10 Hz for alpha). Keep carrier below 1000 Hz and beat up to about 40 Hz (delta through gamma) for effective results.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">Which waveform should I use?</div>
-      <div class="faq-a"><strong>Sine is the recommended default</strong> and the standard for entrainment — a single clean frequency with no added overtones. Square, sawtooth, and triangle are provided for exploration: they add harmonic overtones that can sound bright or harsh, most noticeably at higher carrier frequencies. Isochronic mode always uses a sine carrier for the cleanest pulse. Every waveform stays available — sine is simply the most precise.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">Can I use FreqCraft with a PEMF device or contact speaker?</div>
-      <div class="faq-a">Yes, if your device accepts a standard 3.5mm audio input. Use <strong>isochronic mode</strong> — it outputs a single-channel pulse signal with no stereo dependency, which is the correct choice for any single-driver transducer output. See the <strong>Vibrational transducers</strong> note above for details. FreqCraft makes no claims about PEMF efficacy or physiological effects of vibrational delivery.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">Can I stack multiple frequencies or add background noise?</div>
-      <div class="faq-a"><strong>Stacking, yes — up to five simultaneous voices</strong>, each with its own carrier, beat, waveform and level envelope, all in one session. Tap a voice chip to edit that voice; switch it off to drop it out. <strong>Background noise, not yet</strong> — ambient noise mixing, timed session sequencing and .wav export are coming in <strong>FreqCraft Studio</strong> for desktop, currently in development. You can run FreqCraft alongside a separate noise or ambient app in the meantime; background mixing keeps both playing.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">Will my presets move to a new phone?</div>
-      <div class="faq-a"><strong>No, and that is deliberate.</strong> Android normally copies app data to your Google Drive and carries it across during a phone-to-phone transfer — the operating system does that, not the app, which is how an app with no internet permission can still end up with its data off your handset. FreqCraft opts out of both, so your presets and settings exist only on the device you made them on. The cost is real: <strong>they do not follow you to a new phone, and there is no cloud copy to restore from.</strong> Write down any preset you would not want to rebuild. A preset is a short list of numbers — carrier, beat, waveform and level per voice — so rebuilding one is quick once you have them noted.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">How do I get a refund?</div>
-      <div class="faq-a">Refund requests are handled through Google Play. Open the Play Store, find your purchase, and request a refund through Google's standard process. Google Play's refund policy governs all purchases.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">Does FreqCraft collect any of my data?</div>
-      <div class="faq-a"><strong>No.</strong> FreqCraft has no internet permission and cannot transmit data. All sessions, presets, and settings are stored locally on your device only. See the <a href="/privacy" style="color: var(--cyan); text-decoration: none;">Privacy Policy</a> for the full details.</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">Is FreqCraft safe to use?</div>
-      <div class="faq-a">Read the in-app disclaimer before use. Do not use if you have epilepsy, seizure disorders, serious psychiatric conditions, cardiac conditions, or are pregnant. Do not use while driving or operating machinery. Discontinue immediately if you experience dizziness, disorientation, or unusual discomfort. Consult a physician if you have any neurological or cardiovascular health concerns.</div>
-    </div>
-
-  </div>
-
-  <div class="disclaimer-block">
-    <div class="dis-label">Medical Disclaimer</div>
-    <p>FreqCraft is a personal audio experimentation tool. It is NOT a medical device, not FDA-regulated, and is not intended to diagnose, treat, cure, or prevent any disease or medical condition. Individual results vary. The developer assumes no liability for outcomes resulting from use.</p>
-  </div>
-
-  <footer>
-    <div class="footer-mark">Freq<span>Craft</span> &nbsp;·&nbsp; by Directive Craft LLC</div>
-    <div class="footer-links">
-      <a href="/">Home</a>
-      <a href="/privacy">Privacy Policy</a>
-      <a href="/alternatives/brainwave-generator">BrainWave Generator alternative</a>
-    </div>
+    <p class="legal">
+      <b>Medical disclaimer.</b> FreqCraft is a personal audio experimentation tool. It is NOT a
+      medical device, not FDA-regulated, and is not intended to diagnose, treat, cure, or prevent
+      any disease or medical condition. Individual results vary. The developer assumes no liability
+      for outcomes resulting from use.
+    </p>
   </footer>
 
-</div>
-
 <script>
-  // ── CANVAS ──
-  const canvas = document.getElementById('waveCanvas');
-  const ctx    = canvas.getContext('2d');
-  let W, H, t  = 0;
-
-  function resize() {
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    const waves = [
-      { freq: 0.018, amp: 0.06,  speed: 0.012, phase: 0,   alpha: 0.9 },
-      { freq: 0.011, amp: 0.04,  speed: 0.007, phase: 1.2, alpha: 0.5 },
-    ];
-    waves.forEach(function(w) {
-      ctx.beginPath();
-      ctx.strokeStyle = 'rgba(0,229,255,' + w.alpha + ')';
-      ctx.lineWidth = 1;
-      for (var x = 0; x <= W; x += 2) {
-        var y = H / 2
-          + Math.sin(x * w.freq + t * w.speed + w.phase) * (H * w.amp)
-          + Math.sin(x * w.freq * 0.5 + t * w.speed * 0.6) * (H * w.amp * 0.4);
-        if (x === 0) { ctx.moveTo(x, y); } else { ctx.lineTo(x, y); }
-      }
-      ctx.stroke();
-    });
-    t++;
-    requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', resize);
-  resize();
-  draw();
-
-  // ── EMAIL OBFUSCATION ──
-  // Never in HTML source — assembled at runtime so scrapers can't harvest it.
-  (function() {
-    var u = 'support';
-    var d = 'freqcraft.app';
-    var addr = u + '@' + d;
-    document.querySelectorAll('.email-link').forEach(function(el) {
-      el.href = 'mailto:' + addr;
-    });
+  (function () {
+    var addr = 'support' + '@' + 'freqcraft.app';
+    document.querySelectorAll('.email-link').forEach(function (el) { el.href = 'mailto:' + addr; });
   })();
 </script>
 

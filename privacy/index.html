@@ -3,403 +3,187 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="canonical" href="https://www.freqcraft.app/privacy/" />
   <title>Privacy Policy — FreqCraft</title>
-  <meta name="description" content="FreqCraft Privacy Policy. Zero data collection. No network permission. Everything stays on your device." />
+  <meta name="description" content="FreqCraft collects zero data and has no network permission. It cannot connect to the internet. Everything stays on your device." />
+  <link rel="canonical" href="https://www.freqcraft.app/privacy/" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
-  <link rel="stylesheet" href="../assets/fonts.css" />
+  <link rel="stylesheet" href="/assets/fonts.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --black:    #0A0A0F;
-      --panel:    #13131F;
-      --border:   #1E1E32;
-      --cyan:     #00E5FF;
-      --cyan-dim: #00E5FF33;
-      --text:     #E8E8F0;
-      --muted:    #7A7A9A;
-      --subtle:   #3A3A5A;
+      --ground:#0B0B0C; --panel:#141416; --panel-2:#1B1B1E; --rule:#2C2C30; --rule-lit:#3C3C42;
+      --lit:#FFAA2B; --lit-dim:#CE9440; --ghost:#38332B; --live:#4FD98A; --alert:#FF6152;
+      --prose:#DAD6CD; --prose-dim:#9A968D;
+      --seg14:'DSEG14',ui-monospace,monospace;
+      --ui:'Hubot Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+      --mono:ui-monospace,'SF Mono','JetBrains Mono',Menlo,Consolas,monospace;
+      --wide:60rem; --pad:clamp(18px,5vw,40px);
     }
+    html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+    body { background:var(--ground); color:var(--prose); font-family:var(--ui); font-size:16px; line-height:1.64; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+    ::selection { background:var(--lit); color:#0B0B0C; }
+    :focus-visible { outline:2px solid var(--live); outline-offset:2px; }
+    * { scrollbar-color:var(--rule-lit) var(--ground); }
+    a { color:var(--live); text-decoration:none; border-bottom:1px solid color-mix(in srgb,var(--live) 42%,transparent); transition:border-color .15s; }
+    a:hover { border-bottom-color:var(--live); }
+    code { font-family:var(--mono); font-size:0.86em; color:var(--lit-dim); background:var(--panel-2); border:1px solid var(--rule-lit); padding:1px 5px; }
 
-    html { scroll-behavior: smooth; }
+    .rack { max-width:var(--wide); margin:0 auto; border-left:1px solid var(--rule); border-right:1px solid var(--rule); }
+    .bay { padding:clamp(26px,4.5vw,44px) var(--pad); border-top:1px solid var(--rule); }
+    main.rack > .bay:first-child { border-top:0; }
 
-    body {
-      background: var(--black);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+    .topbar { display:flex; align-items:center; justify-content:space-between; gap:12px 24px; padding:15px var(--pad); border-bottom:1px solid var(--rule); flex-wrap:wrap; }
+    .brand { display:flex; align-items:baseline; gap:12px; border:0; }
+    .brand .mark { font-family:var(--ui); font-weight:700; font-size:1.12rem; letter-spacing:0.03em; color:var(--prose); }
+    .brand .mark b { color:var(--lit); }
+    .topnav { display:flex; gap:22px; flex-wrap:wrap; }
+    .topnav a { font-family:var(--ui); font-weight:600; font-size:0.82rem; color:var(--lit-dim); border:0; }
+    .topnav a:hover { color:var(--lit); }
+    .topnav a.play { color:var(--live); }
 
-    #waveCanvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.08;
-    }
+    .lit { font-family:var(--ui); font-weight:700; font-size:0.82rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--lit); display:block; margin-bottom:14px; }
+    h1 { font-family:var(--ui); font-size:clamp(1.9rem,5vw,2.8rem); font-weight:700; line-height:1.1; letter-spacing:-0.02em; color:var(--prose); margin-bottom:10px; }
+    .eff { font-family:var(--mono); font-size:0.8rem; color:var(--lit-dim); letter-spacing:0.02em; }
+    .lead { color:var(--prose-dim); font-size:1.05rem; max-width:56ch; margin-top:22px; padding-top:20px; border-top:1px solid var(--rule); }
+    .lead strong { color:var(--prose); font-weight:600; }
 
-    .wrapper {
-      position: relative;
-      z-index: 1;
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 0 24px 64px;
-    }
+    .facts { display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--rule-lit); background:var(--panel); }
+    .fact { padding:16px 14px; border-left:1px solid var(--rule); border-top:1px solid var(--rule); }
+    .fact:nth-child(-n+3) { border-top:0; }
+    .fact:nth-child(3n+1) { border-left:0; }
+    .fact .k { font-family:var(--ui); font-weight:600; font-size:0.74rem; letter-spacing:0.03em; text-transform:uppercase; color:var(--lit-dim); }
+    .fact .v { font-family:var(--seg14); font-size:0.92rem; color:var(--lit); margin-top:9px; }
+    @media (max-width:560px) { .facts { grid-template-columns:1fr 1fr; } .fact:nth-child(3n+1) { border-left:1px solid var(--rule); } .fact:nth-child(odd) { border-left:0; } .fact:nth-child(-n+2) { border-top:0; } .fact:nth-child(3) { border-top:1px solid var(--rule); } }
 
-    /* NAV */
-    nav {
-      padding: 24px 0 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+    section.pol + section.pol { border-top:1px solid var(--rule); }
+    h2 { font-family:var(--ui); font-size:clamp(1.15rem,2.6vw,1.4rem); font-weight:700; letter-spacing:-0.01em; color:var(--prose); margin-bottom:14px; }
+    .pol p { max-width:56ch; margin-bottom:14px; color:var(--prose-dim); }
+    .pol p:last-child { margin-bottom:0; }
+    .pol p strong { color:var(--prose); font-weight:600; }
+    .perms { list-style:none; margin:6px 0 14px; }
+    .perms li { border-left:1px solid var(--rule-lit); padding:4px 0 4px 16px; margin-bottom:14px; max-width:56ch; color:var(--prose-dim); }
+    .perms li b { display:block; font-family:var(--mono); font-size:0.82rem; color:var(--lit-dim); margin-bottom:4px; letter-spacing:0.01em; }
 
-    .wordmark {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      text-decoration: none;
-    }
-    .wordmark span { color: var(--cyan); }
+    .foot { padding:26px var(--pad); display:flex; flex-wrap:wrap; gap:16px 28px; justify-content:space-between; align-items:baseline; border-top:1px solid var(--rule); }
+    .foot .fm { font-family:var(--ui); font-weight:700; font-size:0.88rem; color:var(--prose-dim); }
+    .foot .fm b { color:var(--lit-dim); }
+    .foot nav { display:flex; flex-wrap:wrap; gap:10px 20px; }
+    .foot nav a { font-family:var(--ui); font-weight:600; font-size:0.8rem; color:var(--lit-dim); border:0; }
+    .foot nav a:hover { color:var(--lit); }
+    .ns { padding:14px var(--pad) 30px; border-top:1px solid var(--rule); font-family:var(--ui); font-weight:600; font-size:0.78rem; color:var(--lit-dim); }
 
-    .back-link {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      border: 1px solid var(--border);
-      padding: 5px 12px;
-      border-radius: 2px;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .back-link:hover { color: var(--cyan); border-color: var(--cyan-dim); }
-
-    /* PAGE HEADER */
-    .page-header {
-      padding: 48px 0 32px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 40px;
-    }
-
-    .eyebrow {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 12px;
-    }
-
-    h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: var(--text);
-      margin-bottom: 12px;
-    }
-
-    .effective-date {
-      font-size: 0.8rem;
-      color: var(--subtle);
-      letter-spacing: 0.04em;
-    }
-
-    /* SUMMARY BLOCK */
-    .summary-block {
-      background: var(--panel);
-      border: 1px solid var(--cyan-dim);
-      border-left: 3px solid var(--cyan);
-      padding: 24px 28px;
-      margin-bottom: 40px;
-    }
-
-    .summary-block .summary-label {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 12px;
-    }
-
-    .summary-block p {
-      font-size: 0.95rem;
-      color: var(--text);
-      line-height: 1.7;
-      font-weight: 400;
-    }
-
-    /* SECTION */
-    .policy-section {
-      margin-bottom: 40px;
-    }
-
-    .policy-section h2 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 16px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .policy-section p {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.8;
-      margin-bottom: 14px;
-    }
-    .policy-section p:last-child { margin-bottom: 0; }
-
-    .policy-section p strong {
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    /* FACT GRID */
-    .fact-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      margin: 24px 0;
-    }
-
-    .fact-cell {
-      background: var(--panel);
-      padding: 16px 12px;
-    }
-
-    @media (max-width: 640px) {
-      .fact-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-
-    .fact-label {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.62rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--subtle);
-      margin-bottom: 6px;
-    }
-
-    .fact-value {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-    .fact-value.positive { color: var(--cyan); }
-
-    /* FOOTER */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 24px 0 0;
-      margin-top: 48px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .footer-mark {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--subtle);
-    }
-    .footer-mark span { color: var(--cyan); }
-
-    .footer-links {
-      display: flex;
-      gap: 20px;
-    }
-    .footer-links a {
-      font-size: 0.75rem;
-      color: var(--subtle);
-      text-decoration: none;
-      letter-spacing: 0.04em;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--cyan); }
-
-    @media (max-width: 600px) {
-      nav { flex-direction: column; align-items: flex-start; gap: 10px; }
-      .footer-links { flex-direction: column; gap: 8px; }
-    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } }
   </style>
 </head>
 <body>
 
-<canvas id="waveCanvas"></canvas>
-
-<div class="wrapper">
-
-  <nav>
-    <a href="/" class="wordmark">Freq<span>Craft</span></a>
-    <a href="/" class="back-link">← Back</a>
-  </nav>
-
-  <div class="page-header">
-    <p class="eyebrow">Legal</p>
-    <h1>Privacy Policy</h1>
-    <p class="effective-date">Effective date: June 1, 2026 &nbsp;·&nbsp; Directive Craft LLC</p>
-  </div>
-
-  <div class="summary-block">
-    <div class="summary-label">Plain Language Summary</div>
-    <p>FreqCraft collects zero data. It has no network permission. It cannot connect to the internet. Everything you create — every session, preset, and setting — lives exclusively on your device and goes nowhere else. There is nothing to read a privacy policy about. The full policy below says the same thing in legal language.</p>
-  </div>
-
-  <div class="fact-grid">
-    <div class="fact-cell">
-      <div class="fact-label">Data Collected</div>
-      <div class="fact-value positive">None</div>
+  <header class="rack">
+    <div class="topbar">
+      <a class="brand" href="/"><span class="mark">Freq<b>Craft</b></span></a>
+      <nav class="topnav">
+        <a href="/">Home</a>
+        <a href="/support/">Support</a>
+        <a class="play" href="https://play.google.com/store/apps/details?id=com.directivecraft.freqcraft" target="_blank" rel="noopener noreferrer">Get it &rsaquo;</a>
+      </nav>
     </div>
-    <div class="fact-cell">
-      <div class="fact-label">Network Permission</div>
-      <div class="fact-value positive">Not Requested</div>
+  </header>
+
+  <main class="rack">
+    <section class="bay">
+      <h1>Privacy Policy</h1>
+      <p class="eff">Effective 2026-06-01 &nbsp;·&nbsp; Directive Craft LLC</p>
+      <p class="lead">
+        FreqCraft collects zero data. It has no network permission and cannot connect to the
+        internet. Everything you create, every session, preset and setting, lives exclusively on
+        your device and goes nowhere else. <strong>There is nothing to read a privacy policy
+        about.</strong> The full policy below says the same thing in legal language.
+      </p>
+    </section>
+
+    <div class="bay" style="padding-top:0;border-top:0;">
+      <div class="facts" aria-label="Privacy facts">
+        <div class="fact"><span class="k">Data collected</span><span class="v">NONE</span></div>
+        <div class="fact"><span class="k">Network permission</span><span class="v">NONE</span></div>
+        <div class="fact"><span class="k">Analytics</span><span class="v">NONE</span></div>
+        <div class="fact"><span class="k">Ad networks</span><span class="v">NONE</span></div>
+        <div class="fact"><span class="k">Third-party SDKs</span><span class="v">NONE</span></div>
+        <div class="fact"><span class="k">Account required</span><span class="v">NO</span></div>
+      </div>
     </div>
-    <div class="fact-cell">
-      <div class="fact-label">Analytics</div>
-      <div class="fact-value positive">None</div>
+
+    <section class="bay pol">
+      <h2>Information we collect</h2>
+      <p>FreqCraft does not collect, transmit, store, or process any personal information. The application does not request internet access permission in its Android manifest. It is architecturally incapable of transmitting data over a network.</p>
+      <p>All session data, presets, frequency settings, and user preferences are stored locally on your device using Android&rsquo;s standard local storage API (SharedPreferences). This data is accessible only to the FreqCraft application on your device.</p>
+    </section>
+
+    <section class="bay pol">
+      <h2>Device permissions</h2>
+      <p>FreqCraft&rsquo;s Android manifest contains four permissions. Two are requested by the app; two are added automatically by Android system libraries when the app is built. All four are listed in full below: none collects data, and none can access a network.</p>
+      <ul class="perms">
+        <li><b>FOREGROUND_SERVICE / FOREGROUND_SERVICE_MEDIA_PLAYBACK</b> Requested by the app. Allows audio playback to continue while the app is in the background.</li>
+        <li><b>DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION</b> Added automatically by Android. A private, signature-level permission that locks the app&rsquo;s headphone-unplug listener so no other app on the device can reach it. Security only; it grants nothing outward.</li>
+        <li><b>MODIFY_AUDIO_SETTINGS</b> Requested by the app. Lets the audio engine set up its own output stream. It changes nothing outside FreqCraft&rsquo;s own playback and reads nothing.</li>
+        <li><b>CHECK_LICENSE</b> Added automatically by a Google Play system library. Lets the app confirm its own Play licensing status. Collects no personal data.</li>
+        <li><b>DUMP</b> Added automatically by a system library. Allows diagnostic output to the device&rsquo;s own log. It is not usable by FreqCraft to read other apps, and nothing is transmitted.</li>
+      </ul>
+      <p>This list is checked against the shipping app bundle itself, not against the source, before every release.</p>
+      <p>FreqCraft does not request <code>INTERNET</code>, <code>ACCESS_FINE_LOCATION</code>, <code>READ_CONTACTS</code>, <code>READ_EXTERNAL_STORAGE</code>, <code>CAMERA</code>, <code>MICROPHONE</code>, or any other sensitive permission. With no network permission, the app is architecturally incapable of transmitting data off your device.</p>
+    </section>
+
+    <section class="bay pol">
+      <h2>Analytics and crash reporting</h2>
+      <p>FreqCraft contains no analytics frameworks, crash reporting SDKs, advertising SDKs, or any other third-party data collection tools. No usage data, session data, frequency preferences, crash logs, or diagnostic data is transmitted to Directive Craft LLC or any third party.</p>
+    </section>
+
+    <section class="bay pol">
+      <h2>Children&rsquo;s privacy</h2>
+      <p>FreqCraft is intended for users aged 18 and older as disclosed in the in-app disclaimer. The application does not knowingly collect any information from any user, including minors.</p>
+    </section>
+
+    <section class="bay pol">
+      <h2>Backups and moving to a new phone</h2>
+      <p>FreqCraft is excluded from Android Auto Backup and from phone-to-phone transfer. Android backs most apps up to the owner&rsquo;s Google Drive automatically, and copies app data across during device migration. Both are done by the operating system rather than by the app, so an app with no network permission can still have its data carried off the handset that way.</p>
+      <p>FreqCraft opts out of both. The app declares <code>allowBackup="false"</code> and ships data-extraction rules that exclude every file from cloud backup and from device-to-device transfer. Both are required: the first covers older Android versions, and the second closes a phone-to-phone gap that behaves differently on different manufacturers&rsquo; devices.</p>
+      <p>The trade-off is deliberate and it costs you something. Your presets and settings do not follow you to a new phone. There is no cloud copy to restore from, because there is no cloud copy. <strong>Write down any preset you would not want to rebuild.</strong></p>
+    </section>
+
+    <section class="bay pol">
+      <h2>Data retention and deletion</h2>
+      <p>Because no data is transmitted to or stored by Directive Craft LLC, there is no data to retain or delete on our end. All locally stored app data (sessions, presets, settings) can be deleted at any time by uninstalling FreqCraft from your device or by clearing the app&rsquo;s data through Android&rsquo;s application settings.</p>
+    </section>
+
+    <section class="bay pol">
+      <h2>Third-party services</h2>
+      <p>FreqCraft does not integrate with any third-party services, APIs, analytics platforms, advertising networks, or payment processors within the app itself. The one-time purchase is processed entirely by Google Play.</p>
+      <p>Google Play&rsquo;s own privacy practices govern the purchase transaction. FreqCraft receives no personal information from Google Play as a result of a purchase.</p>
+    </section>
+
+    <section class="bay pol">
+      <h2>Changes to this policy</h2>
+      <p>If this policy is updated, the new version will be posted at this URL with a revised effective date. Because FreqCraft collects no data, any future changes are unlikely to affect your privacy in any material way.</p>
+    </section>
+
+    <section class="bay pol">
+      <h2>Contact</h2>
+      <p>Questions about this privacy policy can be directed to the <a href="/support/">FreqCraft support page</a> or by email to the address listed there.</p>
+    </section>
+  </main>
+
+  <footer class="rack">
+    <div class="foot">
+      <span class="fm">Freq<b>Craft</b> &nbsp;·&nbsp; by Directive Craft LLC</span>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/story/">Story</a>
+        <a href="/support/">Support</a>
+        <a href="/alternatives/brainwave-generator">BWGen</a>
+      </nav>
     </div>
-    <div class="fact-cell">
-      <div class="fact-label">Ads / Ad Networks</div>
-      <div class="fact-value positive">None</div>
-    </div>
-    <div class="fact-cell">
-      <div class="fact-label">Third-Party SDKs</div>
-      <div class="fact-value positive">None</div>
-    </div>
-    <div class="fact-cell">
-      <div class="fact-label">Account Required</div>
-      <div class="fact-value positive">No</div>
-    </div>
-  </div>
-
-  <div class="policy-section">
-    <h2>Information We Collect</h2>
-    <p>FreqCraft does not collect, transmit, store, or process any personal information. The application does not request internet access permission in its Android manifest. It is architecturally incapable of transmitting data over a network.</p>
-    <p>All session data, presets, frequency settings, and user preferences are stored locally on your device using Android's standard local storage API (SharedPreferences). This data is accessible only to the FreqCraft application on your device.</p>
-  </div>
-
-  <div class="policy-section">
-    <h2>Device Permissions</h2>
-    <p>FreqCraft's Android manifest contains four permissions. Two are requested by the app; two are added automatically by Android system libraries when the app is built. All four are listed in full below — none collects data, and none can access a network.</p>
-    <p><strong>FOREGROUND_SERVICE / FOREGROUND_SERVICE_MEDIA_PLAYBACK</strong> — Requested by the app. Allow audio playback to continue while the app is in the background.</p>
-    <p><strong>DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION</strong> — Added automatically by Android. A private, signature-level permission that locks the app's headphone-unplug listener so no other app on the device can reach it. Security only; it grants nothing outward.</p>
-    <p><strong>MODIFY_AUDIO_SETTINGS</strong> — Requested by the app. Lets the audio engine set up its own output stream. It changes nothing outside FreqCraft's own playback and reads nothing.</p>
-    <p><strong>CHECK_LICENSE</strong> — Added automatically by a Google Play system library. Lets the app confirm its own Play licensing status. Collects no personal data.</p>
-    <p><strong>DUMP</strong> — Added automatically by a system library. Allows diagnostic output to the device's own log. It is not usable by FreqCraft to read other apps, and nothing is transmitted.</p>
-    <p>This list is checked against the shipping app bundle itself, not against the source, before every release.</p>
-    <p>FreqCraft does <strong>not</strong> request INTERNET, ACCESS_FINE_LOCATION, READ_CONTACTS, READ_EXTERNAL_STORAGE, CAMERA, MICROPHONE, or any other sensitive permission. With no network permission, the app is architecturally incapable of transmitting data off your device.</p>
-  </div>
-
-  <div class="policy-section">
-    <h2>Analytics and Crash Reporting</h2>
-    <p>FreqCraft contains no analytics frameworks, crash reporting SDKs, advertising SDKs, or any other third-party data collection tools. No usage data, session data, frequency preferences, crash logs, or diagnostic data is transmitted to Directive Craft LLC or any third party.</p>
-  </div>
-
-  <div class="policy-section">
-    <h2>Children's Privacy</h2>
-    <p>FreqCraft is intended for users aged 18 and older as disclosed in the in-app disclaimer. The application does not knowingly collect any information from any user, including minors.</p>
-  </div>
-
-  <div class="policy-section">
-    <h2>Backups and Moving to a New Phone</h2>
-    <p><strong>FreqCraft is excluded from Android Auto Backup and from phone-to-phone transfer.</strong> Android backs most apps up to the owner's Google Drive automatically, and copies app data across during device migration. Both are done by the operating system rather than by the app, so an app with no network permission can still have its data carried off the handset that way.</p>
-    <p>FreqCraft opts out of both. The app declares <code>allowBackup="false"</code> and ships data-extraction rules that exclude every file from cloud backup <em>and</em> from device-to-device transfer. Both are required: the first covers older Android versions, and the second closes a phone-to-phone gap that behaves differently on different manufacturers' devices.</p>
-    <p><strong>The trade-off is deliberate and it costs you something.</strong> Your presets and settings do not follow you to a new phone. There is no cloud copy to restore from, because there is no cloud copy. Write down any preset you would not want to rebuild.</p>
-
-    <h2>Data Retention and Deletion</h2>
-    <p>Because no data is transmitted to or stored by Directive Craft LLC, there is no data to retain or delete on our end. All locally stored app data (sessions, presets, settings) can be deleted at any time by uninstalling FreqCraft from your device or by clearing the app's data through Android's application settings.</p>
-  </div>
-
-  <div class="policy-section">
-    <h2>Third-Party Services</h2>
-    <p>FreqCraft does not integrate with any third-party services, APIs, analytics platforms, advertising networks, or payment processors within the app itself. The one-time purchase is processed entirely by Google Play.</p>
-    <p>Google Play's own privacy practices govern the purchase transaction. FreqCraft receives no personal information from Google Play as a result of a purchase.</p>
-  </div>
-
-  <div class="policy-section">
-    <h2>Changes to This Policy</h2>
-    <p>If this policy is updated, the new version will be posted at this URL with a revised effective date. Because FreqCraft collects no data, any future changes are unlikely to affect your privacy in any material way.</p>
-  </div>
-
-  <div class="policy-section">
-    <h2>Contact</h2>
-    <p>Questions about this privacy policy can be directed to the FreqCraft support page at <strong>freqcraft.app/support</strong> or by email to the address listed there.</p>
-  </div>
-
-  <footer>
-    <div class="footer-mark">Freq<span>Craft</span> &nbsp;·&nbsp; by Directive Craft LLC</div>
-    <div class="footer-links">
-      <a href="/">Home</a>
-      <a href="/support">Support</a>
-      <a href="/alternatives/brainwave-generator">BrainWave Generator alternative</a>
-    </div>
+    <p class="ns">No network permission · No analytics · No tracking on this page</p>
   </footer>
-
-</div>
-
-<script>
-  const canvas = document.getElementById('waveCanvas');
-  const ctx    = canvas.getContext('2d');
-  let W, H, t  = 0;
-
-  function resize() {
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    const waves = [
-      { freq: 0.018, amp: 0.06,  speed: 0.012, phase: 0,   alpha: 0.9 },
-      { freq: 0.011, amp: 0.04,  speed: 0.007, phase: 1.2, alpha: 0.5 },
-    ];
-    waves.forEach(function(w) {
-      ctx.beginPath();
-      ctx.strokeStyle = 'rgba(0,229,255,' + w.alpha + ')';
-      ctx.lineWidth = 1;
-      for (var x = 0; x <= W; x += 2) {
-        var y = H / 2
-          + Math.sin(x * w.freq + t * w.speed + w.phase) * (H * w.amp)
-          + Math.sin(x * w.freq * 0.5 + t * w.speed * 0.6) * (H * w.amp * 0.4);
-        if (x === 0) { ctx.moveTo(x, y); } else { ctx.lineTo(x, y); }
-      }
-      ctx.stroke();
-    });
-    t++;
-    requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', resize);
-  resize();
-  draw();
-</script>
 
 </body>
 </html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The experiment that built FreqCraft</title>
+  <meta name="description" content="A student who was failing chemistry spent the last weeks of the semester listening to a binaural-beats focus program on loop, and scored 98% on the final. FreqCraft is the tool that came out of it." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.freqcraft.app/story/" />
+  <meta property="og:title" content="The experiment that built FreqCraft" />
+  <meta property="og:description" content="A student who was failing chemistry scored 98% on the final. This is the tool that came out of it." />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="/assets/fonts.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ground:#0B0B0C; --panel:#141416; --panel-2:#1B1B1E; --rule:#2C2C30; --rule-lit:#3C3C42;
+      --lit:#FFAA2B; --lit-dim:#CE9440; --ghost:#38332B; --live:#4FD98A; --alert:#FF6152;
+      --prose:#DAD6CD; --prose-dim:#9A968D;
+      --seg7:'DSEG7',ui-monospace,monospace;
+      --ui:'Hubot Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+      --wide:60rem; --pad:clamp(18px,5vw,40px);
+    }
+    html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+    body { background:var(--ground); color:var(--prose); font-family:var(--ui); font-size:16px; line-height:1.68; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+    ::selection { background:var(--lit); color:#0B0B0C; }
+    :focus-visible { outline:2px solid var(--live); outline-offset:2px; }
+    * { scrollbar-color:var(--rule-lit) var(--ground); }
+    a { color:var(--live); text-decoration:none; border-bottom:1px solid color-mix(in srgb,var(--live) 42%,transparent); transition:border-color .15s; }
+    a:hover { border-bottom-color:var(--live); }
+
+    .rack { max-width:var(--wide); margin:0 auto; border-left:1px solid var(--rule); border-right:1px solid var(--rule); }
+    .bay { padding:clamp(28px,5vw,48px) var(--pad); border-top:1px solid var(--rule); }
+    main.rack > .bay:first-child { border-top:0; }
+
+    .topbar { display:flex; align-items:center; justify-content:space-between; gap:12px 24px; padding:15px var(--pad); border-bottom:1px solid var(--rule); flex-wrap:wrap; }
+    .brand { display:flex; align-items:baseline; gap:12px; border:0; }
+    .brand .mark { font-family:var(--ui); font-weight:700; font-size:1.12rem; letter-spacing:0.03em; color:var(--prose); }
+    .brand .mark b { color:var(--lit); }
+    .topnav { display:flex; gap:22px; flex-wrap:wrap; }
+    .topnav a { font-family:var(--ui); font-weight:600; font-size:0.82rem; color:var(--lit-dim); border:0; }
+    .topnav a:hover { color:var(--lit); }
+    .topnav a.play { color:var(--live); }
+
+    .lit { font-family:var(--ui); font-weight:700; font-size:0.82rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--lit); display:block; margin-bottom:18px; }
+    h1 { font-family:var(--ui); font-size:clamp(2rem,5.4vw,3.1rem); font-weight:700; line-height:1.1; letter-spacing:-0.02em; color:var(--prose); margin-bottom:18px; text-wrap:balance; max-width:18ch; }
+    .standfirst { color:var(--prose-dim); font-size:1.1rem; max-width:56ch; }
+
+    article { max-width:56ch; }
+    article p { margin-bottom:18px; color:var(--prose); }
+    article p strong { color:var(--lit); font-weight:600; }
+    article p em { font-style:italic; color:var(--prose); }
+
+    .score { border:1px solid var(--rule-lit); background:var(--panel); text-align:center; padding:36px 20px 30px; margin:30px 0; }
+    .score .n { font-family:var(--seg7); font-size:clamp(3.4rem,14vw,6rem); color:var(--lit); position:relative; display:inline-block; line-height:1; }
+    .score .n::before { content:"88\0025"; position:absolute; inset:0; color:var(--ghost); z-index:0; }
+    .score .n span { position:relative; z-index:1; }
+    .score .cap { font-family:var(--ui); font-weight:600; font-size:0.82rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--lit-dim); margin-top:16px; }
+
+    .close { border-top:1px solid var(--rule); padding-top:22px; margin-top:26px; }
+    .close p { color:var(--prose-dim); font-size:0.98rem; max-width:56ch; }
+
+    .foot { padding:26px var(--pad); display:flex; flex-wrap:wrap; gap:16px 28px; justify-content:space-between; align-items:baseline; border-top:1px solid var(--rule); }
+    .foot .fm { font-family:var(--ui); font-weight:700; font-size:0.88rem; color:var(--prose-dim); }
+    .foot .fm b { color:var(--lit-dim); }
+    .foot nav { display:flex; flex-wrap:wrap; gap:10px 20px; }
+    .foot nav a { font-family:var(--ui); font-weight:600; font-size:0.8rem; color:var(--lit-dim); border:0; }
+    .foot nav a:hover { color:var(--lit); }
+    .legal { padding:16px var(--pad) 30px; border-top:1px solid var(--rule); color:var(--prose-dim); font-size:0.8rem; line-height:1.6; max-width:56ch; }
+
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } }
+  </style>
+</head>
+<body>
+
+  <header class="rack">
+    <div class="topbar">
+      <a class="brand" href="/"><span class="mark">Freq<b>Craft</b></span></a>
+      <nav class="topnav">
+        <a href="/">Home</a>
+        <a href="/protocol/">Protocol</a>
+        <a class="play" href="https://play.google.com/store/apps/details?id=com.directivecraft.freqcraft" target="_blank" rel="noopener noreferrer">Get it &rsaquo;</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="rack">
+    <section class="bay">
+      
+      <h1>The experiment that built FreqCraft.</h1>
+      <p class="standfirst">
+        One story is not evidence. It is the reason a person builds a tool, which is a
+        different thing, and worth telling straight.
+      </p>
+    </section>
+
+    <section class="bay">
+      <article>
+        <p>
+          Math was always my weak spot. I failed pre-algebra twice and barely made it through
+          high school. Years later I learned there&rsquo;s a name for it: <strong>dyscalculia</strong>,
+          a numerical processing disorder, essentially dyslexia for numbers.
+        </p>
+        <p>
+          In 2012, in my mid-forties, I went back to college to take chemistry. The prerequisite
+          was algebra, so I started at the bottom and clawed my way through, failing, retaking,
+          scraping a C the hard way. I finally made it into the chemistry class. By the end of
+          the semester I was on the edge of failing that one too.
+        </p>
+        <p>
+          That&rsquo;s when I tried something different. With a documented-disability accommodation,
+          I spent the final review weeks sitting in class every day wearing headphones, listening
+          to a binaural-beats focus program on loop. No notes. No studying at home. Just the audio
+          and the instructor working problems on the board.
+        </p>
+        <p>
+          The final exam was 28 pages. My accommodation gave me a five-hour window. I worked the
+          way I always did, jumping around, skipping what stopped me, cycling back, ran thirty
+          minutes over, and still turned it in <em>unfinished</em>.
+        </p>
+
+        <div class="score">
+          <span class="n"><span>98%</span></span>
+          <div class="cap">Final exam score</div>
+        </div>
+
+        <p>
+          A student who&rsquo;d been failing all semester, who handed in an incomplete exam, scored
+          98%. I can&rsquo;t fully explain it. But it sent me down a path I never left.
+        </p>
+        <p>
+          FreqCraft is the tool I wish I&rsquo;d had back then: transparent, precise, no black boxes,
+          no subscriptions, no guesswork. Every Hz visible, every parameter yours to control.
+          I&rsquo;m <strong>not claiming it will do for you what that semester did for me</strong>.
+          Everyone&rsquo;s different, and this is an instrument for exploration, not a treatment. I
+          built it because I lived something I couldn&rsquo;t ignore, and I wanted a clean, honest
+          tool to keep exploring it.
+        </p>
+
+        <div class="close">
+          <p>
+            One story is not evidence. So there is <a href="/protocol/">an open protocol</a>, a free,
+            step-by-step method for testing auditory entrainment against your own EEG, with a stated
+            null result and a standing invitation to publish whatever you find. You do not need
+            FreqCraft to run it.
+          </p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="rack">
+    <div class="foot">
+      <span class="fm">Freq<b>Craft</b> &nbsp;·&nbsp; by Directive Craft LLC</span>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/protocol/">Protocol</a>
+        <a href="/support/">Support</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/alternatives/brainwave-generator">BWGen</a>
+      </nav>
+    </div>
+    <p class="legal">
+      For personal audio experimentation only. Not a medical device. Not FDA-regulated. Nothing on
+      this page is a health, therapeutic, or cognitive-performance claim.
+    </p>
+  </footer>
+
+</body>
+</html>
