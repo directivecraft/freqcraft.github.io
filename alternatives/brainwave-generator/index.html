@@ -13,9 +13,9 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --ground:#0B0B0C; --panel:#141416; --panel-2:#1B1B1E; --rule:#2C2C30; --rule-lit:#3C3C42;
-      --lit:#FFAA2B; --lit-dim:#CE9440; --ghost:#38332B; --live:#4FD98A; --alert:#FF6152;
-      --prose:#DAD6CD; --prose-dim:#9A968D;
+      --ground:#0A0A0F; --panel:#13131F; --panel-2:#191927; --rule:#1E1E32; --rule-lit:#2C2C48;
+      --lit:#00E5FF; --lit-dim:#00A3B8; --ghost:#3A3A5A; --live:#00E5FF; --alert:#FF6152;
+      --prose:#E8E8F0; --prose-dim:#7A7A9A;
       --seg7:'DSEG7',ui-monospace,monospace; --seg14:'DSEG14',ui-monospace,monospace;
       --ui:'Hubot Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
       --mono:ui-monospace,'SF Mono','JetBrains Mono',Menlo,Consolas,monospace;
@@ -23,7 +23,7 @@
     }
     html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
     body { background:var(--ground); color:var(--prose); font-family:var(--ui); font-size:16px; line-height:1.62; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
-    ::selection { background:var(--lit); color:#0B0B0C; }
+    ::selection { background:var(--lit); color:#0A0A0F; }
     :focus-visible { outline:2px solid var(--live); outline-offset:2px; }
     * { scrollbar-color:var(--rule-lit) var(--ground); }
     a { color:var(--live); text-decoration:none; border-bottom:1px solid color-mix(in srgb,var(--live) 42%,transparent); transition:border-color .15s; }
@@ -108,7 +108,10 @@
       <a class="brand" href="/"><span class="mark">Freq<b>Craft</b></span></a>
       <nav class="topnav">
         <a href="/">Home</a>
+        <a href="/story/">Story</a>
+        <a href="/protocol/">Protocol</a>
         <a href="/support/">Support</a>
+        <a href="/privacy/">Privacy</a>
         <a class="play" href="https://play.google.com/store/apps/details?id=com.directivecraft.freqcraft" target="_blank" rel="noopener noreferrer">Get it &rsaquo;</a>
       </nav>
     </div>

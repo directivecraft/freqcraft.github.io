@@ -20,18 +20,18 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --ground:    #0B0B0C;
-      --panel:     #141416;
-      --panel-2:   #1B1B1E;
-      --rule:      #2C2C30;
-      --rule-lit:  #3C3C42;
-      --lit:       #FFAA2B;
-      --lit-dim:   #CE9440;
-      --ghost:     #38332B;
-      --live:      #4FD98A;
+      --ground:    #0A0A0F;
+      --panel:     #13131F;
+      --panel-2:   #191927;
+      --rule:      #1E1E32;
+      --rule-lit:  #2C2C48;
+      --lit:       #00E5FF;
+      --lit-dim:   #00A3B8;
+      --ghost:     #3A3A5A;
+      --live:      #00E5FF;
       --alert:     #FF6152;
-      --prose:     #DAD6CD;
-      --prose-dim: #9A968D;
+      --prose:     #E8E8F0;
+      --prose-dim: #7A7A9A;
 
       --seg7:  'DSEG7', ui-monospace, monospace;
       --seg14: 'DSEG14', ui-monospace, monospace;
@@ -55,7 +55,7 @@
       overflow-x: hidden;
     }
 
-    ::selection { background: var(--lit); color: #0B0B0C; }
+    ::selection { background: var(--lit); color: #0A0A0F; }
     :focus-visible { outline: 2px solid var(--live); outline-offset: 2px; }
     * { scrollbar-color: var(--rule-lit) var(--ground); }
     ::-webkit-scrollbar { width: 12px; height: 12px; }
@@ -105,14 +105,6 @@
     .topnav a:hover { color: var(--lit); }
     .topnav a.play { color: var(--live); }
 
-    .bandbar { display: grid; grid-template-columns: repeat(5, 1fr); background: var(--panel-2); border-bottom: 1px solid var(--rule); }
-    .band { padding: 11px 10px; border-left: 1px solid var(--rule); text-align: center; }
-    .band:first-child { border-left: 0; }
-    .band .n { font-family: var(--seg14); font-size: 0.82rem; color: #93856A; letter-spacing: 0.02em; }
-    .band .hz { font-family: var(--mono); font-size: 0.74rem; color: var(--prose-dim); display: block; margin-top: 5px; }
-    .band.on { background: var(--panel); }
-    .band.on .n { color: var(--lit); }
-    .band.on .hz { color: var(--lit-dim); }
 
     /* ── HERO ───────────────────────────────────────── */
     h1 {
@@ -124,24 +116,9 @@
     .hero-sub { color: var(--prose-dim); max-width: 56ch; margin-bottom: 30px; font-size: 1.02rem; }
     .hero-sub strong { color: var(--prose); font-weight: 600; }
 
-    /* ── VOICE STACK ────────────────────────────────── */
-    .stack { background: var(--panel); border: 1px solid var(--rule-lit); margin: 4px 0 30px; overflow-x: auto; }
-    .stack-cap {
-      display: flex; justify-content: space-between; gap: 12px; padding: 11px 16px;
-      border-bottom: 1px solid var(--rule);
-      font-family: var(--ui); font-weight: 600; font-size: 0.76rem; color: var(--lit-dim); letter-spacing: 0.01em;
-    }
-    .vrow {
-      display: grid; grid-template-columns: 2.4rem 1fr 1fr 4.6rem 1.2rem;
-      gap: 16px; align-items: center; padding: 13px 16px; border-top: 1px solid var(--rule); min-width: 30rem;
-    }
-    .vrow:first-of-type { border-top: 0; }
-    .vrow .vn { font-family: var(--seg14); font-size: 0.82rem; color: var(--lit-dim); }
-    .vrow .seg7 { font-size: 1.02rem; }
-    .vrow .vw { font-family: var(--seg14); font-size: 0.78rem; color: var(--lit); }
-    .vrow .vd { justify-self: end; width: 8px; height: 8px; border-radius: 50%; background: var(--live); }
-    .vrow.off .vn, .vrow.off .seg7 .v, .vrow.off .vw { color: var(--ghost); }
-    .vrow.off .vd { background: var(--ghost); }
+    /* ── FEATURE GRAPHIC ───────────────────────────── */
+    .fg { margin: 4px 0 30px; border: 1px solid var(--rule-lit); background: var(--panel); line-height: 0; }
+    .fg img { display: block; width: 100%; height: auto; }
 
     /* ── ACTIONS ────────────────────────────────────── */
     .cta {
@@ -220,13 +197,10 @@
 
     /* ── POWER-ON ───────────────────────────────────── */
     @keyframes lite { from { color: var(--ghost); } to { color: var(--lit); } }
-    body.boot .stack .seg7 .v, body.boot .specs .sv .v { animation: lite 0.45s steps(3) both; }
-    body.boot .stack .vrow:nth-child(3) .seg7 .v { animation-delay: 0.05s; }
-    body.boot .stack .vrow:nth-child(4) .seg7 .v { animation-delay: 0.1s; }
-    body.boot .stack .vrow:nth-child(5) .seg7 .v { animation-delay: 0.15s; }
+    body.boot .specs .sv .v { animation: lite 0.45s steps(3) both; }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      body.boot .stack .seg7 .v, body.boot .specs .sv .v { animation: none; }
+      body.boot .specs .sv .v { animation: none; }
       .cta .arr, .cta:hover .arr { transition: none; transform: none; }
     }
 
@@ -238,19 +212,8 @@
       .feat { grid-template-columns: 1fr; gap: 6px; }
     }
     @media (max-width: 620px) {
-      .stack { overflow-x: visible; }
-      .vrow { grid-template-columns: 2.2rem 1fr auto; min-width: 0; column-gap: 12px; row-gap: 4px; }
-      .vrow .seg7:nth-of-type(1) { grid-column: 2; }
-      .vrow .seg7:nth-of-type(2) { grid-column: 2; font-size: 0.86rem; color: var(--lit-dim); }
-      .vrow .seg7:nth-of-type(2)::before { color: color-mix(in srgb, var(--ghost) 70%, transparent); }
-      .vrow .vw { grid-column: 3; grid-row: 1; }
-      .vrow .vd { grid-column: 3; grid-row: 2; justify-self: end; }
-      .stack-cap span:first-child { max-width: 60%; }
     }
     @media (max-width: 460px) {
-      .bandbar { grid-template-columns: repeat(3, 1fr); }
-      .band:nth-child(4) { border-left: 0; }
-      .band:nth-child(-n+3) { border-bottom: 1px solid var(--rule); }
     }
   </style>
 </head>
@@ -263,18 +226,13 @@
         <span class="st">On Google Play</span>
       </a>
       <nav class="topnav">
-        <a href="/alternatives/brainwave-generator">From BWGen</a>
+        <a href="/story/">Story</a>
         <a href="/protocol/">Protocol</a>
         <a href="/support/">Support</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/alternatives/brainwave-generator">BWGen</a>
         <a class="play" href="https://play.google.com/store/apps/details?id=com.directivecraft.freqcraft" target="_blank" rel="noopener noreferrer">Get it &rsaquo;</a>
       </nav>
-    </div>
-    <div class="bandbar" aria-hidden="true">
-      <div class="band"><span class="n">DELTA</span><span class="hz">0.5–4</span></div>
-      <div class="band on"><span class="n">THETA</span><span class="hz">4–8</span></div>
-      <div class="band"><span class="n">ALPHA</span><span class="hz">8–13</span></div>
-      <div class="band"><span class="n">BETA</span><span class="hz">13–30</span></div>
-      <div class="band"><span class="n">GAMMA</span><span class="hz">30–100</span></div>
     </div>
   </header>
 
@@ -289,13 +247,9 @@
         It plays silently alongside any other audio, with no interruptions.
       </p>
 
-      <figure class="stack" aria-label="Example five-voice session">
-        <figcaption class="stack-cap"><span>Voice · Carrier Hz · Beat Hz · Wave</span><span>Session 01</span></figcaption>
-        <div class="vrow"><span class="vn">V1</span><span class="seg7" data-g="888.888"><span class="v">001.957</span></span><span class="seg7" data-g="88.888"><span class="v">01.957</span></span><span class="vw">SINE</span><span class="vd" aria-hidden="true"></span></div>
-        <div class="vrow"><span class="vn">V2</span><span class="seg7" data-g="888.888"><span class="v">003.915</span></span><span class="seg7" data-g="88.888"><span class="v">03.915</span></span><span class="vw">SINE</span><span class="vd" aria-hidden="true"></span></div>
-        <div class="vrow"><span class="vn">V3</span><span class="seg7" data-g="888.888"><span class="v">007.830</span></span><span class="seg7" data-g="88.888"><span class="v">07.830</span></span><span class="vw">SINE</span><span class="vd" aria-hidden="true"></span></div>
-        <div class="vrow"><span class="vn">V4</span><span class="seg7" data-g="888.888"><span class="v">015.660</span></span><span class="seg7" data-g="88.888"><span class="v">15.660</span></span><span class="vw">SQR</span><span class="vd" aria-hidden="true"></span></div>
-        <div class="vrow off"><span class="vn">V5</span><span class="seg7" data-g="888.888"><span class="v">023.490</span></span><span class="seg7" data-g="88.888"><span class="v">23.490</span></span><span class="vw">SINE</span><span class="vd" aria-hidden="true"></span></div>
+      <figure class="fg">
+        <img src="assets/feature_graphic.png" width="1024" height="500"
+             alt="FreqCraft &mdash; Precision Hz. Nothing hidden. Nothing tracked." />
       </figure>
 
       <a class="cta" href="https://play.google.com/store/apps/details?id=com.directivecraft.freqcraft" target="_blank" rel="noopener noreferrer">
@@ -308,12 +262,12 @@
 
     <section class="bay">
       <div class="specs" aria-label="At a glance">
-        <div class="spec"><span class="sv"><span class="v">5</span></span><span class="sk">Voices</span></div>
-        <div class="spec"><span class="sv"><span class="v">4</span></span><span class="sk">Waveforms</span></div>
-        <div class="spec"><span class="sv"><span class="v">2</span></span><span class="sk">Modes</span></div>
-        <div class="spec"><span class="sv inf"><span class="v">&infin;</span></span><span class="sk">Presets</span></div>
-        <div class="spec"><span class="sv"><span class="v">1</span></span><span class="sk">Purchase</span></div>
-        <div class="spec"><span class="sv"><span class="v">0</span></span><span class="sk">Data</span></div>
+        <div class="spec"><span class="sv"><span class="v">5</span></span><span class="sk">Simultaneous Voices</span></div>
+        <div class="spec"><span class="sv"><span class="v">4</span></span><span class="sk">Waveform Types</span></div>
+        <div class="spec"><span class="sv"><span class="v">2</span></span><span class="sk">Tone Modes</span></div>
+        <div class="spec"><span class="sv inf"><span class="v">&infin;</span></span><span class="sk">Saved Presets</span></div>
+        <div class="spec"><span class="sv"><span class="v">1</span></span><span class="sk">One-Time Purchase</span></div>
+        <div class="spec"><span class="sv"><span class="v">0</span></span><span class="sk">Data Collected</span></div>
       </div>
     </section>
 
@@ -328,19 +282,21 @@
     <section class="bay">
       <h2 class="lit">What layering sounds like</h2>
       <p class="measure" style="color:var(--prose-dim);margin-bottom:18px;">
-        Two voices whose carriers sit close together beat against each other inside the same ear.
-        Stack five and the session has a texture no single tone can produce: the thing Brainwave
-        Generator users came for, rebuilt with every value on screen.
+        A binaural voice straddles its carrier: the left ear gets half the beat below it, the
+        right ear half above. The two ears never hear the beat itself, only the two tones, and
+        the beat appears where they meet. Stack five voices and the session has a texture no
+        single tone can produce: the thing Brainwave Generator users came for, rebuilt with
+        every value on screen.
       </p>
-      <figure class="scope" aria-label="Two carriers producing a beat where they overlap">
+      <figure class="scope" aria-label="One carrier straddled: left and right offset by half the beat">
         <svg viewBox="0 0 720 150" xmlns="http://www.w3.org/2000/svg" role="img">
-          <title>Two close carriers summing to a slow beat envelope</title>
-          <path d="M0 75 Q 90 6, 180 75 T 360 75 T 540 75 T 720 75" fill="none" stroke="#CE9440" stroke-width="1.3" opacity="0.5"/>
-          <path d="M0 75 Q 87 8, 174 75 T 348 75 T 522 75 T 696 75 T 870 75" fill="none" stroke="#CE9440" stroke-width="1.3" opacity="0.5"/>
-          <path d="M0 75 Q 90 12, 180 75 T 360 75 T 540 75 T 720 75" fill="none" stroke="#FFAA2B" stroke-width="2.4"/>
-          <path d="M0 75 Q 90 138, 180 75 T 360 75 T 540 75 T 720 75" fill="none" stroke="#FFAA2B" stroke-width="2.4"/>
+          <title>A carrier straddled by half the beat in each ear</title>
+          <path d="M0 75 Q 90 6, 180 75 T 360 75 T 540 75 T 720 75" fill="none" stroke="#00A3B8" stroke-width="1.3" opacity="0.5"/>
+          <path d="M0 75 Q 87 8, 174 75 T 348 75 T 522 75 T 696 75 T 870 75" fill="none" stroke="#00A3B8" stroke-width="1.3" opacity="0.5"/>
+          <path d="M0 75 Q 90 12, 180 75 T 360 75 T 540 75 T 720 75" fill="none" stroke="#00E5FF" stroke-width="2.4"/>
+          <path d="M0 75 Q 90 138, 180 75 T 360 75 T 540 75 T 720 75" fill="none" stroke="#00E5FF" stroke-width="2.4"/>
         </svg>
-        <figcaption>200.00 Hz + 207.83 Hz &nbsp;&rarr;&nbsp; 7.83 Hz beat envelope</figcaption>
+        <figcaption>Carrier 200.000 Hz &middot; beat 7.830 Hz &nbsp;&rarr;&nbsp; L 196.085 Hz &nbsp;/&nbsp; R 203.915 Hz</figcaption>
       </figure>
     </section>
 
