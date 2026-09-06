@@ -171,14 +171,6 @@
     .studio { background: var(--panel); border: 1px solid var(--rule-lit); padding: clamp(22px, 4vw, 34px); }
     .studio h2 { font-size: 1.2rem; margin-bottom: 10px; }
     .studio p { color: var(--prose-dim); max-width: 56ch; margin-bottom: 8px; font-size: 0.95rem; }
-    .wl { display: flex; gap: 10px; flex-wrap: wrap; margin: 20px 0 8px; }
-    .wl input[type="email"] { flex: 1 1 240px; background: var(--panel-2); border: 1px solid var(--rule-lit); color: var(--prose); font-family: var(--ui); font-size: 0.95rem; padding: 13px 16px; outline: none; }
-    .wl input[type="email"]:focus { border-color: var(--live); }
-    .wl input[type="email"]::placeholder { color: var(--prose-dim); }
-    .wl button { background: var(--panel); border: 1px solid var(--live); color: var(--live); font-family: var(--ui); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 13px 20px; cursor: pointer; white-space: nowrap; }
-    .wl button:hover { background: color-mix(in srgb, var(--live) 12%, var(--panel)); }
-    .wl-note { font-family: var(--ui); font-weight: 600; font-size: 0.8rem; color: var(--lit-dim); letter-spacing: 0.01em; }
-    .wl-ok { display: none; color: var(--live); font-family: var(--ui); font-weight: 700; font-size: 0.9rem; padding: 12px 0; }
 
     .cite { color: var(--prose-dim); font-size: 0.94rem; max-width: 56ch; }
     .cite strong { color: var(--prose); font-weight: 600; }
@@ -312,21 +304,13 @@
     </section>
 
     <section class="bay">
-      <div class="studio">
+      <div class="studio" id="studio">
         <h2>FreqCraft Studio: the full desktop workstation is being built.</h2>
         <p>
           Unlimited voices, timed session sequencing, ambient noise and background layers, waveform
           harmonic filtering, .wav export, and community preset libraries: the rest of what Brainwave
           Generator offered, rebuilt for modern hardware.
         </p>
-        <form id="studio" class="wl" action="https://buttondown.com/api/emails/embed-subscribe/freqcraft" method="post" target="bd-iframe" onsubmit="return bdNotify()">
-          <input type="email" name="email" id="emailInput" placeholder="your@email.com" autocomplete="email" required />
-          <input type="hidden" name="embed" value="1" />
-          <button type="submit">Notify me at launch</button>
-        </form>
-        <p class="wl-note">Waitlist only · No marketing · No data sharing · Ever</p>
-        <p class="wl-ok" id="successMsg">&#10003; On the Studio list. We&rsquo;ll reach out at launch.</p>
-        <iframe name="bd-iframe" style="display:none" title="subscribe"></iframe>
       </div>
     </section>
 
@@ -370,12 +354,6 @@
   </footer>
 
 <script>
-  function bdNotify() {
-    document.getElementById('studio').style.display = 'none';
-    document.querySelector('.wl-note').style.display = 'none';
-    document.getElementById('successMsg').style.display = 'block';
-    return true;
-  }
   window.addEventListener('load', function () {
     setTimeout(function () { document.body.classList.remove('boot'); }, 700);
   });
