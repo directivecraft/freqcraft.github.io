@@ -96,7 +96,7 @@
   <main class="rack">
     <section class="bay">
       <h1>Privacy Policy</h1>
-      <p class="eff">Effective 2026-06-01 &nbsp;·&nbsp; Directive Craft LLC</p>
+      <p class="eff">Effective 2026-11-17 &nbsp;·&nbsp; Directive Craft LLC</p>
       <p class="lead">
         FreqCraft collects zero data. It has no network permission and cannot connect to the
         internet. Everything you create, every session, preset and setting, lives exclusively on
@@ -124,14 +124,14 @@
 
     <section class="bay pol">
       <h2>Device permissions</h2>
-      <p>FreqCraft&rsquo;s Android manifest contains four permissions. Two are requested by the app; two are added automatically by Android system libraries when the app is built. All four are listed in full below: none collects data, and none can access a network.</p>
+      <p>FreqCraft&rsquo;s Android manifest requests five permissions. Four are requested by the app; one is added automatically by an Android system library when the app is built. All five are listed in full below: none collects data, and none can access a network.</p>
       <ul class="perms">
         <li><b>FOREGROUND_SERVICE / FOREGROUND_SERVICE_MEDIA_PLAYBACK</b> Requested by the app. Allows audio playback to continue while the app is in the background.</li>
-        <li><b>DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION</b> Added automatically by Android. A private, signature-level permission that locks the app&rsquo;s headphone-unplug listener so no other app on the device can reach it. Security only; it grants nothing outward.</li>
+        <li><b>POST_NOTIFICATIONS</b> Requested by the app. On Android 13 and later, lets the app show the notification Android requires while audio plays in the background. It reads nothing and sends nothing.</li>
         <li><b>MODIFY_AUDIO_SETTINGS</b> Requested by the app. Lets the audio engine set up its own output stream. It changes nothing outside FreqCraft&rsquo;s own playback and reads nothing.</li>
-        <li><b>CHECK_LICENSE</b> Added automatically by a Google Play system library. Lets the app confirm its own Play licensing status. Collects no personal data.</li>
-        <li><b>DUMP</b> Added automatically by a system library. Allows diagnostic output to the device&rsquo;s own log. It is not usable by FreqCraft to read other apps, and nothing is transmitted.</li>
+        <li><b>DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION</b> Added automatically by Android. A private, signature-level permission that locks the app&rsquo;s headphone-unplug listener so no other app on the device can reach it. Security only; it grants nothing outward.</li>
       </ul>
+      <p>The manifest also names <code>DUMP</code>, but not as a permission FreqCraft holds. A system library uses it as a lock on one of its own components, so that only the device&rsquo;s debugging tools can call that component. It gives FreqCraft no access to anything.</p>
       <p>This list is checked against the shipping app bundle itself, not against the source, before every release.</p>
       <p>FreqCraft does not request <code>INTERNET</code>, <code>ACCESS_FINE_LOCATION</code>, <code>READ_CONTACTS</code>, <code>READ_EXTERNAL_STORAGE</code>, <code>CAMERA</code>, <code>MICROPHONE</code>, or any other sensitive permission. With no network permission, the app is architecturally incapable of transmitting data off your device.</p>
     </section>
